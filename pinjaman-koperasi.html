@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinjaman Koperasi Kakitangan Kerajaan & Badan Berkanun | Consult Plus</title>
+  <meta name="description" content="Pakej pembiayaan peribadi pinjaman koperasi khas untuk staf kerajaan AG, guru, polis PDRM, KKM, dan badan berkanun di Malaysia. Terima CCRIS/CTOS, potongan BPA Angkasa.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#059669',
+              darkEmerald: '#047857',
+              deepGreen: '#064e3b',
+              navy: '#0f172a',
+              slate: '#1e293b',
+              gold: '#f59e0b',
+              goldDark: '#d97706'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-[#f4f9fb] text-slate-800 antialiased selection:bg-[#008CAC] selection:text-white">
+
+  <!-- 1. MAIN NAVIGATION -->
+  <header id="main-navbar" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-18">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#012831] via-[#033945] to-[#008CAC] flex items-center justify-center text-[#FFE600] text-sm font-black tracking-wider shadow-md group-hover:scale-105 transition-transform duration-300">CP</div>
+          <div class="leading-none">
+            <span class="text-lg sm:text-xl font-black tracking-tight text-slate-900 font-heading">
+              Consult<span class="text-[#008CAC]">Plus</span><span class="text-[9px] font-extrabold text-[#012831] bg-[#FFE600] px-1.5 py-0.5 rounded ml-1">MY</span>
+            </span>
+            <span class="block text-[9px] font-semibold text-slate-400 tracking-wider uppercase mt-0.5">Financial Advisory</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Halaman Utama</a>
+          <a href="about.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Tentang Kami</a>
+          
+          <!-- Dropdown Submenu: Perkhidmatan (Active) -->
+          <div class="relative group">
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-bold text-emerald-700 bg-emerald-50 whitespace-nowrap transition flex items-center gap-1">
+              <span>Perkhidmatan</span>
+              <svg class="w-3.5 h-3.5 text-emerald-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu Floating Card -->
+            <div class="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50">
+              <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 divide-y divide-slate-100">
+                <a href="pinjaman-koperasi.html" class="block p-3 rounded-xl bg-emerald-50/90 text-emerald-900 transition group/item">
+                  <div class="text-xs font-bold text-emerald-700">Pinjaman Koperasi (Semasa)</div>
+                  <div class="text-[11px] text-emerald-600 mt-0.5">Kakitangan Awam, Kerajaan & PDRM</div>
+                </a>
+                <a href="pinjaman-bank.html" class="block p-3 rounded-xl hover:bg-teal-50/80 transition group/item">
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-teal-700">Bank & Sektor Swasta</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Pekerja Swasta, Syarikat MNC, GLC & Eksekutif</div>
+                </a>
+                <a href="penyatuan-hutang.html" class="block p-3 rounded-xl hover:bg-amber-50/80 transition group/item">
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-amber-700">Penyatuan Hutang (Overlap)</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Gabung Komitmen & Jimat Ansuran Bulanan</div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="verify.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Verify</a>
+          <a href="contact.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Hubungi Kami</a>
+        </nav>
+
+        <!-- CTA Action Buttons -->
+        <div class="hidden sm:flex items-center gap-3 shrink-0">
+          <button class="open-consultation-modal inline-flex items-center justify-center bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-extrabold text-xs xl:text-sm px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition whitespace-nowrap">
+            Semak Kelayakan
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="lg:hidden">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-700 hover:text-emerald-600 hover:bg-slate-100 focus:outline-none transition" aria-label="Buka Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden transition-all duration-300">
+    <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg bg-[#012831] text-[#FFE600] flex items-center justify-center text-sm font-black">CP</div>
+            <span class="font-bold text-slate-900 text-lg">ConsultPlus.my</span>
+          </div>
+          <button id="close-mobile-menu" class="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Tutup Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <nav class="mt-6 flex flex-col gap-1.5 text-sm">
+          <a href="index.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Halaman Utama</a>
+          <a href="about.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Tentang Kami</a>
+          
+          <div class="py-1">
+            <div class="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">Pakej Perkhidmatan</div>
+            <div class="pl-2 space-y-1">
+              <a href="pinjaman-koperasi.html" class="block px-3 py-2 rounded-lg text-emerald-700 font-bold bg-emerald-50 text-xs">
+                • Pinjaman Koperasi (Kerajaan/PDRM)
+              </a>
+              <a href="pinjaman-bank.html" class="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:text-emerald-600 hover:bg-slate-50 text-xs">
+                • Bank & Sektor Swasta
+              </a>
+              <a href="penyatuan-hutang.html" class="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:text-emerald-600 hover:bg-slate-50 text-xs">
+                • Penyatuan Hutang (Overlap)
+              </a>
+            </div>
+          </div>
+
+          <a href="verify.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Verify</a>
+          <a href="contact.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Hubungi Kami</a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100">
+        <button class="open-consultation-modal w-full mb-3 bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-extrabold py-3.5 rounded-xl shadow-md text-center transition">
+          Semakan Slip Gaji Percuma
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PAGE HERO BANNER -->
+  <section class="bg-[#012831] bg-gradient-to-r from-[#012831] via-[#033945] to-[#008CAC] text-white py-10 sm:py-14 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-fade-up">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3.5 py-1.5 rounded-full inline-block mb-3">
+          Khas Kakitangan Kerajaan, PDRM & Badan Berkanun
+        </span>
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight mb-4">
+          Pinjaman Peribadi Koperasi <span class="text-emerald-400">Patuh Syariah & Kelulusan Pantas</span>
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6">
+          Pembiayaan sehingga <strong>RM300,000</strong> dengan tempoh bayaran balik sehingga <strong>10 tahun</strong>. Potongan gaji automatik melalui BPA/Angkasa. Terbuka kepada pemohon dengan masalah <strong>CCRIS, CTOS, AKPK, dan komitmen luar tinggi</strong>.
+        </p>
+        <div class="flex flex-wrap gap-3.5">
+          <a href="#jadual-pakej" class="bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-black px-6 py-3 rounded-xl transition hover-elevate shadow-md">
+            Lihat Jadual Pakej
+          </a>
+          <a href="https://wa.me/601156892341?text=Salam%20Konsultan%20Consult Plus%2C%20saya%20staf%20kerajaan%2Fbadan%20berkanun%20ingin%20semak%20kelayakan%20pinjaman%20koperasi." target="_blank" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-semibold px-6 py-3 rounded-xl transition hover-elevate">
+            Semak Kelayakan Slip Gaji
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. KEY ADVANTAGES OF KOPERASI LOANS -->
+  <section class="py-10 sm:py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10 animate-fade-up">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Kelebihan Utama</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-2 font-heading">Kelebihan Pembiayaan Koperasi Bersama Consult Plus</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">Solusi terbaik apabila permohonan pinjaman peribadi bank komersial ditolak atau terhad had 60%.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover-elevate transition-all duration-300 animate-fade-up delay-100">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded inline-block mb-3">Kelebihan 1</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5 font-heading">Terima Rekod CCRIS & CTOS</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Tidak mengambil kira tunggakan pinjaman bank di luar slip gaji (DSR luar diabaikan untuk pakej tertentu).
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover-elevate transition-all duration-300 animate-fade-up delay-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2 py-0.5 rounded inline-block mb-3">Kelebihan 2</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5 font-heading">Kadar Serendah 2.95% p.a.</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Pakej promosi bermusim dan kadar tetap (flat rate) yang berdaya saing dengan pembiayaan bank komersial.
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover-elevate transition-all duration-300 animate-fade-up delay-300">
+          <div class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded inline-block mb-3">Kelebihan 3</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5 font-heading">Payout Bersih Tinggi (Hingga 95%)</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Dapatkan jumlah tunai bersih yang maksimum tanpa potongan yuran tersembunyi yang tidak munasabah.
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 hover-elevate transition-all duration-300 animate-fade-up delay-400">
+          <div class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2 py-0.5 rounded inline-block mb-3">Kelebihan 4</div>
+          <h3 class="font-bold text-slate-900 text-base mb-1.5 font-heading">Kelulusan 24 - 48 Jam</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Semakan dan kelulusan dokumen pantas secara dalam talian terus ke panel ibu pejabat koperasi.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. KOPERASI PACKAGE COMPARISON TABLE -->
+  <section id="jadual-pakej" class="py-10 sm:py-14 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Perbandingan Pakej</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-2 font-heading">Senarai Pakej Koperasi Popular 2026</h2>
+        <p class="text-slate-600 text-sm mt-2">Pilih pakej yang menepati profil kelayakan dan keperluan tunai anda.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm finance-table min-w-[650px]">
+          <thead>
+            <tr class="bg-slate-900 text-white font-heading">
+              <th class="p-4">Pakej Koperasi</th>
+              <th class="p-4">Kelayakan Sasaran</th>
+              <th class="p-4">Kadar Keuntungan</th>
+              <th class="p-4">Had Pinjaman</th>
+              <th class="p-4">Kriteria CCRIS / CTOS</th>
+              <th class="p-4 text-center">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr>
+              <td class="p-4 font-bold text-slate-900">
+                Yayasan Ihsan Rakyat (YIR)
+                <span class="block text-[11px] text-emerald-600 font-semibold">Paling Popular & Cepat</span>
+              </td>
+              <td class="p-4">Staf AG, Polis (PDRM), KKM, Kem. Pendidikan</td>
+              <td class="p-4 font-bold text-emerald-700">2.95% - 4.99%</td>
+              <td class="p-4 font-bold">Hingga RM300,000</td>
+              <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">Terima CCRIS / CTOS</span></td>
+              <td class="p-4 text-center">
+                <a href="https://wa.me/601156892341?text=Salam%20saya%20berminat%20mohon%20pakej%20Yayasan%20Ihsan%20Rakyat%20(YIR)." target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">Mohon Pakej</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-900">
+                RCE Marketing (Yayasan)
+                <span class="block text-[11px] text-teal-600 font-semibold">Potongan BPA Angkasa</span>
+              </td>
+              <td class="p-4">Kerajaan Persekutuan & Badan Berkanun</td>
+              <td class="p-4 font-bold text-emerald-700">3.88% - 5.50%</td>
+              <td class="p-4 font-bold">Hingga RM250,000</td>
+              <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">Terima Komitmen Tinggi</span></td>
+              <td class="p-4 text-center">
+                <a href="https://wa.me/601156892341?text=Salam%20saya%20berminat%20mohon%20pakej%20RCE%20Marketing." target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">Mohon Pakej</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-900">
+                Koperasi Kowamas
+                <span class="block text-[11px] text-amber-600 font-semibold">Payout Tinggi</span>
+              </td>
+              <td class="p-4">Kerajaan Persekutuan, Negeri & Majlis Perbandaran</td>
+              <td class="p-4 font-bold text-emerald-700">3.99% - 5.80%</td>
+              <td class="p-4 font-bold">Hingga RM200,000</td>
+              <td class="p-4"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded font-bold">CTOS Bawah RM30k Layak</span></td>
+              <td class="p-4 text-center">
+                <a href="https://wa.me/601156892341?text=Salam%20saya%20berminat%20mohon%20pakej%20Kowamas." target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">Mohon Pakej</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold text-slate-900">
+                Koperasi Co-share
+                <span class="block text-[11px] text-indigo-600 font-semibold">Fleksibel & Jimat</span>
+              </td>
+              <td class="p-4">Staf AG & Badan Berkanun Terpilih</td>
+              <td class="p-4 font-bold text-emerald-700">4.20% - 5.90%</td>
+              <td class="p-4 font-bold">Hingga RM200,000</td>
+              <td class="p-4"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold">Terima SAA / Overlap</span></td>
+              <td class="p-4 text-center">
+                <a href="https://wa.me/601156892341?text=Salam%20saya%20berminat%20mohon%20pakej%20Co-share." target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">Mohon Pakej</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. ELIGIBILITY CRITERIA & REQUIRED DOCUMENTS -->
+  <section class="py-10 sm:py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        
+        <!-- Eligibility Criteria -->
+        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded inline-block mb-3">Syarat Asas</div>
+          <h3 class="text-xl font-bold text-slate-900 font-heading mb-4">Syarat Kelayakan Peminjam</h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <li>• Warganegara Malaysia berumur antara 20 hingga 58 tahun.</li>
+            <li>• Berjawatan tetap sekurang-kurangnya 3 hingga 6 bulan (Staf kontrak kerajaan terpilih layak memohon).</li>
+            <li>• Pendapatan kasar bulanan minimum RM1,500 (Gaji pokok + Elaun tetap).</li>
+            <li>• Potongan gaji dalam slip gaji belum melebihi 60% (Atau bersedia membuat overlap penyatuan hutang).</li>
+          </ul>
+        </div>
+
+        <!-- Required Documents -->
+        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-100 px-2.5 py-1 rounded inline-block mb-3">Senarai Semak</div>
+          <h3 class="text-xl font-bold text-slate-900 font-heading mb-4">Dokumen Yang Diperlukan</h3>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <li>• Salinan Slip Gaji 3 Bulan Terkini (Disahkan oleh majikan).</li>
+            <li>• 3 Salinan Kad Pengenalan / MyKad (Muka depan & belakang disahkan).</li>
+            <li>• Surat Pengesahan Jawatan / Opsyen Bersara terkini.</li>
+            <li>• Salinan Muka Depan Buku Bank / Penyata Akaun Gaji untuk kemasukan wang.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. APPLICATION CTA FORM -->
+  <section class="py-10 sm:py-14 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black font-heading mb-3">Semak Kelayakan Pinjaman Koperasi Anda Sekarang</h2>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto mb-8">Hantar maklumat asas anda dan konsultan kami akan menghubungi anda dalam masa 15 minit bersama jadual kelayakan lengkap.</p>
+      
+      <form class="eligibility-form max-w-xl mx-auto bg-slate-950/80 p-6 sm:p-8 rounded-3xl border border-slate-700 text-left space-y-4" data-form-type="Borang Pinjaman Koperasi">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Penuh</label>
+            <input type="text" name="fullName" required placeholder="Nama Anda" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">No. WhatsApp</label>
+            <input type="tel" name="phone" required placeholder="01X-XXXXXXX" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Gaji Pokok + Elaun (RM)</label>
+            <input type="number" name="salary" required placeholder="cth: 3500" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Jumlah Diperlukan (RM)</label>
+            <input type="number" name="loanAmount" required placeholder="cth: 70000" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Kategori Jabatan / Majikan</label>
+          <select name="sector" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500">
+            <option value="Kerajaan Persekutuan (AG)">Kerajaan Persekutuan (AG)</option>
+            <option value="Kementerian Pendidikan / Guru">Kementerian Pendidikan / Guru</option>
+            <option value="Kementerian Kesihatan (KKM)">Kementerian Kesihatan (KKM)</option>
+            <option value="Polis Diraja Malaysia (PDRM)">Polis Diraja Malaysia (PDRM)</option>
+            <option value="Badan Berkanun / Kerajaan Negeri">Badan Berkanun / Kerajaan Negeri</option>
+            <option value="GLC (TNB/TM/Pos Malaysia)">GLC Terpilih</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black rounded-xl text-sm shadow-lg transition">
+          Semak Kelayakan Slip Gaji via WhatsApp
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 8. FOOTER -->
+  <footer class="bg-[#00181e] text-slate-400 text-xs pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-900">
+        
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[#012831] text-[#FFE600] flex items-center justify-center text-xs font-black">CP</div>
+            <span class="text-lg font-black text-white font-heading">Consult<span class="text-[#008CAC]">Plus</span>.my</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed pr-4">
+            Agensi konsultan pemasaran kewangan berdaftar di Malaysia. Menghubungkan peminjam dengan panel bank komersial dan koperasi berdaftar untuk mendapatkan pembiayaan terbaik, patuh syariah, dan selamat.
+          </p>
+          <div class="pt-2 text-slate-300 space-y-1">
+            <div><strong class="text-white">Alamat:</strong> Level 15, Menara Kembar Bank Rakyat, Jalan Travers, KL Sentral, 50470 Kuala Lumpur</div>
+            <div><strong class="text-white">Hotline WhatsApp:</strong> +60 11-5689 2341</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 font-heading">Halaman</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html" class="hover:text-emerald-400 transition">Halaman Utama</a></li>
+            <li><a href="about.html" class="hover:text-emerald-400 transition">Tentang Kami</a></li>
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Pinjaman Koperasi</a></li>
+            <li><a href="pinjaman-bank.html" class="hover:text-emerald-400 transition">Pinjaman Bank & Swasta</a></li>
+            <li><a href="penyatuan-hutang.html" class="hover:text-emerald-400 transition">Penyatuan Hutang</a></li>
+            <li><a href="verify.html" class="hover:text-emerald-400 transition">Verify</a></li>
+            <li><a href="contact.html" class="hover:text-emerald-400 transition">Hubungi & Semak Kelayakan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 font-heading">Pakej Pembiayaan</h4>
+          <ul class="space-y-2.5">
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Koperasi Kakitangan Kerajaan</a></li>
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Pakej CCRIS / CTOS / AKPK</a></li>
+            <li><a href="pinjaman-bank.html" class="hover:text-emerald-400 transition">Pinjaman Peribadi Sektor Swasta</a></li>
+            <li><a href="pinjaman-bank.html#kategori-pakej" class="hover:text-emerald-400 transition">Pakej Eksekutif & Profesional</a></li>
+            <li><a href="penyatuan-hutang.html" class="hover:text-emerald-400 transition">Program Overlap & Jimat Ansuran</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-4 font-heading">Notis Keselamatan</h4>
+          <div class="p-3.5 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-300 leading-relaxed">
+            Kami <strong>tidak pernah</strong> meminta sebarang wang pendahuluan atau yuran pemprosesan secara tunai atau deposit ke akaun pihak ketiga.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 text-[11px] text-slate-400 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
+        <div>© 2026 Consult Plus Financial Advisory (ConsultPlus.my). Hak Cipta Terpelihara.</div>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-emerald-400 transition">Dasar Privasi</a>
+          <a href="#" class="hover:text-emerald-400 transition">Terma & Syarat</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 9. FLOATING WHATSAPP -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="floating-wa-btn" class="bg-[#008CAC] hover:bg-[#00708a] text-white text-xs sm:text-sm font-bold py-3.5 px-5 rounded-full shadow-2xl whatsapp-pulse transition transform hover:scale-105 focus:outline-none flex items-center justify-center gap-2">
+      WhatsApp Konsultan
+    </button>
+  </div>
+
+  <!-- Modal Dialog -->
+  <div id="consultation-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      <button id="close-consultation-modal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 text-xl font-bold" aria-label="Tutup">✕</button>
+      <div class="mb-4">
+        <h3 class="text-xl font-bold text-slate-900 font-heading">Borang Semakan Kelayakan</h3>
+        <p class="text-xs text-slate-500">Semakan Slip Gaji 100% Percuma</p>
+      </div>
+      <form class="eligibility-form space-y-4" data-form-type="Borang Modal Koperasi">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Penuh</label>
+          <input type="text" name="fullName" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">No. WhatsApp</label>
+            <input type="tel" name="phone" required placeholder="01X-XXXXXXX" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Majikan</label>
+            <input type="text" name="sector" required placeholder="cth: KKM / Guru / PDRM" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Gaji Pokok + Elaun (RM)</label>
+            <input type="number" name="salary" required placeholder="cth: 3500" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Jumlah Diperlukan (RM)</label>
+            <input type="number" name="loanAmount" required placeholder="cth: 50000" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition">
+          Hantar Terus Ke WhatsApp Konsultan
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahkan Identiti Ejen & Staf Rasmi | Consult Plus Malaysia</title>
+  <meta name="description" content="Semak dan sahkan kesahihan ejen konsultan pinjaman Consult Plus Malaysia sebelum berurusan. Sistem pengesahan staf rasmi, elak sindiket penipuan dan scammer.">
+  <meta name="keywords" content="verify ejen pinjaman, semak staf consultplus, pengesahan konsultan kewangan, anti scam pinjaman peribadi">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Sahkan Identiti Ejen & Staf Rasmi | Consult Plus Malaysia">
+  <meta property="og:description" content="Semak kesahihan ejen konsultan sebelum memulakan urusan pinjaman atau penyerahan dokumen.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:3000/verify.html">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-[#f4f9fb] text-slate-800 antialiased selection:bg-[#008CAC] selection:text-white">
+
+  <!-- 1. MAIN NAVIGATION (DIRECT LENDING STYLE) -->
+  <header id="main-navbar" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Brand Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-teal-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-emerald-500/20 group-hover:scale-105 transition transform">
+            CP
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-none font-heading">
+              Consult<span class="text-emerald-600">Plus</span><span class="text-[10px] ml-1 bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded">MY</span>
+            </span>
+            <span class="text-[10px] text-slate-500 font-medium tracking-wider uppercase mt-0.5">Financial Advisory</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Halaman Utama</a>
+          <a href="about.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Tentang Kami</a>
+          
+          <!-- Dropdown Submenu: Perkhidmatan -->
+          <div class="relative group">
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition flex items-center gap-1">
+              <span>Perkhidmatan</span>
+              <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu Floating Card -->
+            <div class="absolute top-full left-0 pt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50">
+              <div class="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 divide-y divide-slate-100">
+                <a href="pinjaman-koperasi.html" class="block p-3 rounded-xl hover:bg-emerald-50/80 transition group/item">
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-emerald-700">Pinjaman Koperasi</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Kakitangan Awam, Kerajaan & PDRM</div>
+                </a>
+                <a href="pinjaman-bank.html" class="block p-3 rounded-xl hover:bg-teal-50/80 transition group/item">
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-teal-700">Bank & Sektor Swasta</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Pekerja Swasta, Syarikat MNC, GLC & Eksekutif</div>
+                </a>
+                <a href="penyatuan-hutang.html" class="block p-3 rounded-xl hover:bg-amber-50/80 transition group/item">
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-amber-700">Penyatuan Hutang (Overlap)</div>
+                  <div class="text-[11px] text-slate-500 mt-0.5">Gabung Komitmen & Jimat Ansuran Bulanan</div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="verify.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-bold text-emerald-700 bg-emerald-50 whitespace-nowrap transition">Verify</a>
+          <a href="contact.html" class="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-emerald-600 hover:bg-slate-50 whitespace-nowrap transition">Hubungi Kami</a>
+        </nav>
+
+        <!-- CTA Action Buttons -->
+        <div class="hidden sm:flex items-center gap-3 shrink-0">
+          <button class="open-consultation-modal inline-flex items-center justify-center bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-extrabold text-xs xl:text-sm px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition whitespace-nowrap">
+            Semak Kelayakan
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="lg:hidden">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-700 hover:text-emerald-600 hover:bg-slate-100 focus:outline-none transition" aria-label="Buka Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden transition-all duration-300">
+    <div class="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded-lg bg-[#012831] text-[#FFE600] flex items-center justify-center text-sm font-black">CP</div>
+            <span class="font-bold text-slate-900 text-lg">ConsultPlus.my</span>
+          </div>
+          <button id="close-mobile-menu" class="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Tutup Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <nav class="mt-6 flex flex-col gap-1.5 text-sm">
+          <a href="index.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Halaman Utama</a>
+          <a href="about.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Tentang Kami</a>
+          
+          <div class="py-1">
+            <div class="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-400">Pakej Perkhidmatan</div>
+            <div class="pl-2 space-y-1">
+              <a href="pinjaman-koperasi.html" class="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:text-emerald-600 hover:bg-slate-50 text-xs">
+                • Pinjaman Koperasi
+              </a>
+              <a href="pinjaman-bank.html" class="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:text-emerald-600 hover:bg-slate-50 text-xs">
+                • Bank & Sektor Swasta
+              </a>
+              <a href="penyatuan-hutang.html" class="block px-3 py-2 rounded-lg text-slate-700 font-medium hover:text-emerald-600 hover:bg-slate-50 text-xs">
+                • Penyatuan Hutang (Overlap)
+              </a>
+            </div>
+          </div>
+
+          <a href="verify.html" class="px-4 py-2.5 rounded-xl text-emerald-700 font-bold bg-emerald-50">Verify</a>
+          <a href="contact.html" class="px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-slate-50">Hubungi Kami</a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100">
+        <button class="open-consultation-modal w-full mb-3 bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-extrabold py-3.5 rounded-xl shadow-md text-center transition">
+          Semakan Slip Gaji Percuma
+        </button>
+        <p class="text-xs text-slate-400 text-center">Konsultan Kewangan Sah & Berdaftar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HERO SECTION & VERIFICATION PORTAL (DIRECT LENDING STYLE) -->
+  <section class="bg-[#012831] bg-gradient-to-r from-[#012831] via-[#033945] to-[#008CAC] text-white py-10 sm:py-16 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#008CAC]/20 border border-[#008CAC]/40 text-[#7fd0de] text-xs sm:text-sm font-bold mb-6 animate-fade-up">
+        <span class="w-2 h-2 rounded-full bg-[#FFE600] animate-pulse"></span>
+        Sistem Pengesahan Integriti & Anti-Scam Rasmi
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight leading-tight animate-fade-up delay-100">
+        Sahkan Identiti Ejen & <span class="text-[#FFE600]">Staf Rasmi Consult Plus</span>
+      </h1>
+
+      <p class="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-4 leading-relaxed animate-fade-up delay-200">
+        Adakah anda bertemu atau dihubungi oleh seseorang yang mengaku sebagai konsultan kami (cth: Ejen Ali)? Masukkan <strong>Staff ID</strong>, <strong>Nama Ejen</strong>, atau <strong>No. Telefon</strong> untuk mengesahkan status pendaftaran rasmi mereka.
+      </p>
+
+      <!-- VERIFICATION SEARCH CARD -->
+      <div class="mt-10 bg-[#012831] border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md animate-fade-up delay-300 text-left">
+        
+        <form id="agent-search-form" class="space-y-4">
+          <div>
+            <label for="agent-search-input" class="block text-xs sm:text-sm font-bold text-slate-200 mb-2">
+              Masukkan Staff ID, Nama Ejen atau No. Telefon:
+            </label>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <div class="relative flex-1">
+                <input 
+                  type="text" 
+                  id="agent-search-input" 
+                  required 
+                  placeholder="Contoh: CP-1021 atau Ali bin Osman atau 01156892341" 
+                  class="w-full px-5 py-4 bg-white border-2 border-slate-300 rounded-2xl text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#008CAC] transition font-medium shadow-inner"
+                >
+              </div>
+              <button 
+                type="submit" 
+                class="px-8 py-4 bg-[#FFE600] hover:bg-[#FFD200] text-[#012831] font-black text-sm sm:text-base rounded-2xl shadow-lg transition shrink-0 flex items-center justify-center gap-2"
+              >
+                <span>Sahkan Sekarang</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Quick Search Sample Pills -->
+        <div class="mt-4 pt-4 border-t border-slate-700/60 flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-slate-300 font-medium">Contoh Carian Cepat:</span>
+          <button type="button" class="quick-verify-btn bg-[#033945] hover:bg-[#064e5d] text-[#FFE600] px-3.5 py-1.5 rounded-xl border border-[#008CAC]/40 font-bold transition" data-id="CP-1021">
+            CP-1021 (Ali Osman)
+          </button>
+          <button type="button" class="quick-verify-btn bg-[#033945] hover:bg-[#064e5d] text-[#FFE600] px-3.5 py-1.5 rounded-xl border border-[#008CAC]/40 font-bold transition" data-id="CP-1045">
+            CP-1045 (Siti Aminah)
+          </button>
+          <button type="button" class="quick-verify-btn bg-[#033945] hover:bg-[#064e5d] text-[#FFE600] px-3.5 py-1.5 rounded-xl border border-[#008CAC]/40 font-bold transition" data-id="CP-1088">
+            CP-1088 (Farhan Rosli)
+          </button>
+          <button type="button" class="quick-verify-btn bg-[#033945] hover:bg-[#064e5d] text-[#FFE600] px-3.5 py-1.5 rounded-xl border border-[#008CAC]/40 font-bold transition" data-id="CP-1102">
+            CP-1102 (Noraini Kassim)
+          </button>
+        </div>
+
+        <!-- DYNAMIC RESULT CONTAINER -->
+        <div id="verification-result" class="mt-6"></div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. SECURITY & ANTI-SCAM 4 GOLDEN RULES -->
+  <section class="py-10 sm:py-14 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-3 py-1 rounded-full">Panduan Keselamatan</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-3 font-heading">4 Prinsip Keselamatan Pembiayaan Consult Plus</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-3">Ketahui tanda-tanda transaksi yang sah dan elakkan diri daripada menjadi mangsa sindiket penipuan pinjaman.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover-elevate transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm mb-4">
+            01
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2 font-heading">Sifar Caj Pendahuluan</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Staf Consult Plus <strong>TIDAK AKAN</strong> meminta bayaran pendahuluan (*upfront*), yuran pemprosesan, atau duti setem sebelum pinjaman diluluskan.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover-elevate transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center font-black text-sm mb-4">
+            02
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2 font-heading">Tiada Akaun Bank Peribadi</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Semua pembayaran ansuran pinjaman hanya melalui potongan gaji (BPA/Angkasa) atau auto-debit rasmi ke institusi bank/koperasi, bukan akaun individu.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover-elevate transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center font-black text-sm mb-4">
+            03
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2 font-heading">Kerahsiaan Data PDPA</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Semua dokumen peribadi dan slip gaji anda dilindungi dengan protokol keselamatan ketat di bawah Akta Perlindungan Data Peribadi (PDPA 2010).
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover-elevate transition-all duration-300">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-sm mb-4">
+            04
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2 font-heading">Semakan ID & Nombor Rasmi</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Pastikan nombor WhatsApp individu yang menghubungi anda sepadan dengan nombor yang disahkan di portal ini sebelum menyerahkan maklumat.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. OFFICIAL AGENTS DIRECTORY SECTION -->
+  <section class="py-10 sm:py-14 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Senarai Wakil Sah</span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 mt-3 font-heading">Direktori Konsultan Berdaftar Rasmi</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-3">Berikut adalah senarai penasihat kewangan dan konsultan sah yang bertauliah untuk menguruskan permohonan anda.</p>
+      </div>
+
+      <!-- DYNAMIC AGENTS DIRECTORY CARDS -->
+      <div id="agents-directory" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    </div>
+  </section>
+
+  <!-- 5. REPORT FRAUD CALLOUT -->
+  <section class="py-16 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 text-rose-700 bg-rose-100 font-bold text-xs px-3.5 py-1 rounded-full">
+        Talian Aduan & Integriti
+      </div>
+      <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">
+        Mengesyaki Individu Menyamar Sebagai Ejen Kami?
+      </h3>
+      <p class="text-slate-600 text-sm max-w-xl mx-auto leading-relaxed">
+        Sila laporkan kepada pihak pengurusan Consult Plus dengan segera jika terdapat individu yang meminta wang pemprosesan atau tidak tersenarai dalam direktori di atas.
+      </p>
+      <div class="pt-2">
+        <a href="https://wa.me/601156892341?text=Salam%20HQ%20Consult Plus%2C%20saya%20ingin%20melaporkan%20aduan%2Fpertanyaan%20mengenai%20kesahihan%20ejen." target="_blank" class="inline-flex items-center justify-center bg-rose-600 hover:bg-rose-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg transition">
+          Hubungi Hotline Pengurusan HQ (WhatsApp)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FOOTER -->
+  <footer class="bg-[#00181e] text-slate-400 text-xs pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-slate-900">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[#012831] text-[#FFE600] flex items-center justify-center text-xs font-black">CP</div>
+            <span class="text-lg font-black text-white font-heading">Consult<span class="text-[#008CAC]">Plus</span>.my</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed pr-4">
+            Agensi konsultan pemasaran kewangan peribadi berdaftar di Malaysia. Menghubungkan peminjam dengan panel bank komersial dan koperasi berdaftar untuk mendapatkan pembiayaan terbaik, patuh syariah, dan selamat.
+          </p>
+          <div class="pt-2 text-slate-300 space-y-1">
+            <div><strong class="text-white">Alamat:</strong> Level 15, Menara Kembar Bank Rakyat, Jalan Travers, KL Sentral, 50470 Kuala Lumpur</div>
+            <div><strong class="text-white">Hotline WhatsApp:</strong> +60 11-5689 2341</div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 font-heading">Halaman</h4>
+          <ul class="space-y-2.5">
+            <li><a href="index.html" class="hover:text-emerald-400 transition">Halaman Utama</a></li>
+            <li><a href="about.html" class="hover:text-emerald-400 transition">Tentang Kami</a></li>
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Pinjaman Koperasi</a></li>
+            <li><a href="pinjaman-bank.html" class="hover:text-emerald-400 transition">Pinjaman Bank & Swasta</a></li>
+            <li><a href="penyatuan-hutang.html" class="hover:text-emerald-400 transition">Penyatuan Hutang</a></li>
+            <li><a href="verify.html" class="text-emerald-400 font-bold transition">Verify</a></li>
+            <li><a href="contact.html" class="hover:text-emerald-400 transition">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <!-- Product Packages -->
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4 font-heading">Pakej Pembiayaan</h4>
+          <ul class="space-y-2.5">
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Koperasi Kakitangan Kerajaan</a></li>
+            <li><a href="pinjaman-koperasi.html" class="hover:text-emerald-400 transition">Pakej CCRIS / CTOS / AKPK</a></li>
+            <li><a href="pinjaman-bank.html" class="hover:text-emerald-400 transition">Pinjaman Peribadi Sektor Swasta</a></li>
+            <li><a href="pinjaman-bank.html#kategori-pakej" class="hover:text-emerald-400 transition">Pakej Eksekutif & Profesional</a></li>
+            <li><a href="penyatuan-hutang.html" class="hover:text-emerald-400 transition">Program Overlap & Jimat Ansuran</a></li>
+          </ul>
+        </div>
+
+        <!-- Security Badge Notice -->
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-4 font-heading">Notis Keselamatan</h4>
+          <div class="p-3.5 bg-slate-900 border border-slate-800 rounded-xl text-[11px] text-slate-300 leading-relaxed">
+            Kami <strong>tidak pernah</strong> meminta sebarang wang pendahuluan, yuran pemprosesan, atau duti setem secara tunai atau deposit ke akaun pihak ketiga.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Legal & Copyright -->
+      <div class="pt-8 text-[11px] text-slate-400 space-y-3 text-center sm:text-left">
+        <p>
+          <strong>Penafian Perundangan:</strong> Consult Plus Financial Advisory merupakan agensi konsultan & pemasaran bebas yang bekerjasama dengan pelbagai koperasi berdaftar di bawah Suruhanjaya Koperasi Malaysia (SKM) dan institusi perbankan yang dikawal selia oleh Bank Negara Malaysia (BNM). Kami bukan pemberi pinjaman wang tidak berlesen. Segala kelulusan, kadar faedah, dan pengeluaran dana adalah tertakluk sepenuhnya kepada budi bicara institusi kewangan yang terlibat.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-between items-center pt-4 border-t border-slate-900 text-slate-400 gap-2">
+          <div>© 2026 Consult Plus Financial Advisory (ConsultPlus.my). Hak Cipta Terpelihara.</div>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-emerald-400 transition">Dasar Privasi</a>
+            <a href="#" class="hover:text-emerald-400 transition">Terma & Syarat</a>
+            <a href="#" class="hover:text-emerald-400 transition">Penafian</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 7. FLOATING WHATSAPP BUTTON -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="floating-wa-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold py-3 px-5 rounded-full shadow-2xl whatsapp-pulse transition transform hover:scale-105 focus:outline-none flex items-center justify-center">
+      WhatsApp Konsultan
+    </button>
+  </div>
+
+  <!-- 8. MODAL DIALOG SEMAKAN KELAYAKAN -->
+  <div id="consultation-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+      
+      <button id="close-consultation-modal" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 text-xl font-bold" aria-label="Tutup">
+        ✕
+      </button>
+
+      <div class="mb-4">
+        <h3 class="text-xl font-bold text-slate-900 font-heading">Borang Semakan Kelayakan</h3>
+        <p class="text-xs text-slate-500">Konsultasi & Semakan Slip Gaji 100% Percuma</p>
+      </div>
+
+      <form class="eligibility-form space-y-4" data-form-type="Borang Modal Sahkan Ejen">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Nama Penuh</label>
+          <input type="text" name="fullName" required placeholder="Nama seperti dalam Kad Pengenalan" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">No. Telefon WhatsApp</label>
+            <input type="tel" name="phone" required placeholder="01X-XXXXXXX" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Sektor Majikan</label>
+            <select name="sector" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+              <option value="Kerajaan Persekutuan (AG)">Kerajaan Persekutuan (AG)</option>
+              <option value="Polis (PDRM) / Tentera">Polis (PDRM) / Tentera</option>
+              <option value="Badan Berkanun / Negeri">Badan Berkanun / Negeri</option>
+              <option value="Swasta / GLC">Swasta / GLC</option>
+              <option value="Profesional / Eksekutif">Profesional / Eksekutif</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Gaji Pokok + Elaun (RM)</label>
+            <input type="number" name="salary" required placeholder="cth: 3200" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Jumlah Pembiayaan (RM)</label>
+            <input type="number" name="loanAmount" required placeholder="cth: 50000" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Status Rekod Kredit</label>
+          <select name="creditStatus" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:border-emerald-500">
+            <option value="Tiada Masalah (Bersih)">Rekod Bersih / Tiada Tunggakan</option>
+            <option value="Ada Masalah CCRIS / CTOS">Ada CCRIS / CTOS</option>
+            <option value="Komitmen Luar Tinggi">Komitmen Luar Tinggi (Potongan Melebihi 60%)</option>
+            <option value="Status AKPK / SAA">Status AKPK / SAA</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition">
+          Hantar Terus Ke WhatsApp Konsultan
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript File -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
