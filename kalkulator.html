@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -57,17 +57,17 @@
   </script>
 </head>
 
-<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep">
+<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep overflow-x-hidden">
 
   <!-- Top Info Bar -->
-  <div class="bg-brand-navyDeep text-white/90 text-xs py-2 px-4 text-center border-b border-white/10 hidden sm:block">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen & Patuh Syariah</span>
-        <span class="text-white/40">|</span>
-        <span class="flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Sebarang Wang Pendahuluan (*Zero Upfront Fee*)</span>
+  <div class="bg-brand-navyDeep text-white/90 text-[11px] sm:text-xs py-2 px-3 sm:px-4 text-center border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-4">
+      <div class="flex items-center justify-center gap-2 sm:gap-4">
+        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen</span>
+        <span class="text-white/40 hidden sm:inline">|</span>
+        <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Caj Wang Pendahuluan</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2">
         <span class="text-brand-yellow font-medium">Talian Konsultasi:</span>
         <a href="tel:+60123456789" class="hover:underline text-white font-bold">+6012-345 6789</a>
       </div>
@@ -76,18 +76,18 @@
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md transition-all duration-300 border-b border-amber-900/5">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all duration-300 shadow-md">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-lg sm:text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all shadow-md">
           C<span class="text-brand-yellow group-hover:text-brand-navyDeep font-bold">+</span>
         </div>
         <div class="flex flex-col">
-          <span class="font-display font-black text-2xl tracking-tight text-brand-navy leading-none">
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-brand-navy leading-none">
             consult<span class="text-brand-yellow">plus</span>
           </span>
-          <span class="text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
+          <span class="text-[8px] sm:text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
         </div>
       </a>
 
@@ -95,7 +95,6 @@
       <nav class="hidden lg:flex items-center space-x-7 text-[15px] font-semibold text-brand-navy">
         <a href="tentang-kami.html" class="hover:text-brand-yellow transition-colors">Tentang Kami</a>
         
-        <!-- Dropdown: Servis Pinjaman -->
         <div class="relative group cursor-pointer flex items-center gap-1 hover:text-brand-yellow transition-colors py-2">
           <a href="servis-pinjaman.html" class="hover:text-brand-yellow">Servis Pinjaman</a>
           <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
@@ -128,28 +127,46 @@
 
       <!-- Right Action CTA -->
       <div class="hidden sm:flex items-center gap-4">
-        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2.5 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all duration-300 hover:scale-105 active:scale-95">
+        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all hover:scale-105 active:scale-95">
           <span>Semak Kelayakan</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="lg:hidden p-2 text-brand-navy hover:text-brand-yellow focus:outline-none" aria-label="Buka Menu">
-        <i data-lucide="menu" class="w-7 h-7"></i>
+      <!-- Mobile Menu Button with Toggle State -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl bg-white border border-gray-200 text-brand-navy hover:text-brand-yellow focus:outline-none shadow-sm" aria-label="Buka Menu">
+        <i id="menuIcon" data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-lg border-b border-gray-100 px-6 py-6 space-y-4 shadow-2xl">
-      <a href="tentang-kami.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Tentang Kami</a>
-      <a href="servis-pinjaman.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Servis Pinjaman</a>
-      <a href="kalkulator.html" class="block text-base font-semibold text-brand-yellow py-1">Kalkulator Pinjaman</a>
-      <a href="kisah-kejayaan.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kisah Kejayaan</a>
-      <a href="panel-bank.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Panel Bank Kami</a>
-      <a href="soalan-lazim.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Soalan Lazim (FAQ)</a>
-      <div class="pt-4 border-t border-gray-100">
-        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow">
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 px-5 py-6 space-y-3 shadow-2xl">
+      <a href="tentang-kami.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Tentang Kami</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="servis-pinjaman.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Servis Pinjaman</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="kalkulator.html" class="flex items-center justify-between text-base font-bold text-brand-yellow py-2 px-3 rounded-xl bg-brand-yellowLight">
+        <span>Kalkulator Ansuran & DSR</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-brand-yellow"></i>
+      </a>
+      <a href="kisah-kejayaan.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Kisah Kejayaan Pelanggan</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="panel-bank.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Panel Bank Kami</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="soalan-lazim.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Soalan Lazim (FAQ)</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <div class="pt-3 border-t border-gray-100">
+        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow text-sm">
           <span>Semak Kelayakan Percuma</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -158,39 +175,39 @@
   </header>
 
   <!-- PAGE HERO -->
-  <section class="py-16 lg:py-20 bg-brand-cream border-b border-amber-900/5 text-center">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-4">
-      <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-4 py-1.5 rounded-full inline-block">
+  <section class="py-12 sm:py-16 lg:py-20 bg-brand-cream border-b border-amber-900/5 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-3 sm:space-y-4">
+      <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full inline-block">
         ALAT PENGIRAAN PINTAR
       </span>
-      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-brand-navy">
-        Kalkulator Pinjaman & <span class="text-brand-yellow">DSR Interaktif</span>
+      <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-6xl text-brand-navy">
+        Kalkulator Pinjaman & <span class="text-brand-yellow">DSR</span>
       </h1>
-      <p class="text-base sm:text-lg text-brand-textMuted max-w-2xl mx-auto">
+      <p class="text-xs sm:text-base text-brand-textMuted max-w-xl mx-auto leading-relaxed">
         Rancang komitmen kewangan anda secara tepat sebelum membuat permohonan ke bank.
       </p>
     </div>
   </section>
 
   <!-- CALCULATOR SECTION -->
-  <section class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
+  <section class="py-12 sm:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12">
       
       <!-- Box 1: Loan Installment Calculator -->
-      <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl sm:rounded-4xl shadow-card border border-amber-900/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+      <div class="bg-brand-cream p-5 sm:p-8 lg:p-10 rounded-3xl sm:rounded-4xl shadow-card border border-amber-900/10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center mb-10 sm:mb-16">
         
         <!-- Controls Column -->
-        <div class="lg:col-span-7 space-y-6">
-          <h2 class="font-display font-black text-2xl text-brand-navy">1. Kira Ansuran Bulanan</h2>
+        <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+          <h2 class="font-display font-black text-xl sm:text-2xl text-brand-navy">1. Kira Ansuran Bulanan</h2>
 
           <!-- Loan Amount Slider -->
           <div>
-            <div class="flex justify-between items-center mb-2">
-              <label class="font-bold text-sm text-brand-navy">Jumlah Pinjaman:</label>
-              <span id="loanAmountDisplay" class="font-display font-black text-xl text-brand-yellow">RM 60,000</span>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="font-bold text-xs sm:text-sm text-brand-navy">Jumlah Pinjaman:</label>
+              <span id="loanAmountDisplay" class="font-display font-black text-lg sm:text-xl text-brand-yellow">RM 60,000</span>
             </div>
             <input type="range" id="loanAmountInput" min="5000" max="500000" step="5000" value="60000" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
-            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+            <div class="flex justify-between text-[10px] sm:text-[11px] text-brand-textMuted mt-1">
               <span>RM 5,000</span>
               <span>RM 250,000</span>
               <span>RM 500,000</span>
@@ -199,12 +216,12 @@
 
           <!-- Tenor Slider -->
           <div>
-            <div class="flex justify-between items-center mb-2">
-              <label class="font-bold text-sm text-brand-navy">Tempoh Pinjaman:</label>
-              <span id="tenureDisplay" class="font-display font-black text-xl text-brand-yellow">7 Tahun (84 Bulan)</span>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="font-bold text-xs sm:text-sm text-brand-navy">Tempoh Pinjaman:</label>
+              <span id="tenureDisplay" class="font-display font-black text-lg sm:text-xl text-brand-yellow">7 Tahun (84 Bulan)</span>
             </div>
             <input type="range" id="tenureInput" min="1" max="10" step="1" value="7" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
-            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+            <div class="flex justify-between text-[10px] sm:text-[11px] text-brand-textMuted mt-1">
               <span>1 Tahun</span>
               <span>5 Tahun</span>
               <span>10 Tahun</span>
@@ -213,12 +230,12 @@
 
           <!-- Interest Rate Slider -->
           <div>
-            <div class="flex justify-between items-center mb-2">
-              <label class="font-bold text-sm text-brand-navy">Kadar Faedah Setahun:</label>
-              <span id="rateDisplay" class="font-display font-black text-xl text-brand-yellow">3.88% p.a.</span>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="font-bold text-xs sm:text-sm text-brand-navy">Kadar Faedah Setahun:</label>
+              <span id="rateDisplay" class="font-display font-black text-lg sm:text-xl text-brand-yellow">3.88% p.a.</span>
             </div>
             <input type="range" id="rateInput" min="2.5" max="8.5" step="0.1" value="3.88" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
-            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+            <div class="flex justify-between text-[10px] sm:text-[11px] text-brand-textMuted mt-1">
               <span>2.50%</span>
               <span>5.00%</span>
               <span>8.50%</span>
@@ -227,17 +244,17 @@
         </div>
 
         <!-- Output Card -->
-        <div class="lg:col-span-5 bg-brand-navy text-white p-7 rounded-3xl space-y-6 text-center shadow-xl">
-          <span class="text-xs uppercase font-bold tracking-widest text-brand-yellow">Anggaran Bulanan</span>
+        <div class="lg:col-span-5 bg-brand-navy text-white p-6 sm:p-7 rounded-3xl space-y-4 sm:space-y-6 text-center shadow-xl">
+          <span class="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-brand-yellow">Anggaran Bulanan</span>
           
           <div>
-            <p class="font-display font-black text-4xl sm:text-5xl text-brand-yellow" id="monthlyInstallmentDisplay">
+            <p class="font-display font-black text-3xl sm:text-5xl text-brand-yellow" id="monthlyInstallmentDisplay">
               RM 908
             </p>
-            <p class="text-xs text-white/70 mt-1">sebulan</p>
+            <p class="text-xs text-white/70 mt-1">sebulan (*anggaran*)</p>
           </div>
 
-          <div class="pt-4 border-t border-white/10 space-y-2 text-xs text-left">
+          <div class="pt-3 sm:pt-4 border-t border-white/10 space-y-2 text-xs text-left">
             <div class="flex justify-between">
               <span class="text-white/70">Jumlah Faedah:</span>
               <span class="font-bold text-white" id="totalInterestDisplay">RM 16,296</span>
@@ -257,34 +274,34 @@
       </div>
 
 
-      <!-- Box 2: DSR (Debt Service Ratio) Estimator -->
-      <div class="bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-sm space-y-6">
-        <div class="border-b border-gray-100 pb-4">
-          <h2 class="font-display font-black text-2xl text-brand-navy">2. Anggaran Nisbah Khidmat Hutang (DSR)</h2>
-          <p class="text-sm text-brand-textMuted">Ketahui sama ada komitmen bulanan anda masih berada dalam paras selamat pihak bank (bawah 60% - 70%).</p>
+      <!-- Box 2: DSR Estimator -->
+      <div class="bg-white p-5 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
+        <div class="border-b border-gray-100 pb-3">
+          <h2 class="font-display font-black text-xl sm:text-2xl text-brand-navy">2. Anggaran Nisbah Khidmat Hutang (DSR)</h2>
+          <p class="text-xs sm:text-sm text-brand-textMuted mt-1">Semak sama ada komitmen bulanan anda masih berada dalam paras selamat pihak bank (bawah 60% - 70%).</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label class="block text-xs font-bold text-brand-navy mb-2">Gaji Bersih Bulanan (RM):</label>
+            <label class="block text-xs font-bold text-brand-navy mb-1.5">Gaji Bersih Bulanan (RM):</label>
             <input type="number" id="netSalaryInput" value="4500" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-bold focus:outline-none focus:border-brand-yellow" />
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-brand-navy mb-2">Jumlah Komitmen Bank Sedia Ada (RM):</label>
+            <label class="block text-xs font-bold text-brand-navy mb-1.5">Jumlah Komitmen Bank Sedia Ada (RM):</label>
             <input type="number" id="existingCommitmentInput" value="1800" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-bold focus:outline-none focus:border-brand-yellow" />
           </div>
         </div>
 
-        <div class="p-6 bg-brand-yellowLight rounded-2xl border border-brand-yellow/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="p-4 sm:p-6 bg-brand-yellowLight rounded-2xl border border-brand-yellow/30 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
           <div>
-            <p class="text-xs font-bold text-brand-navy uppercase">Status Kelayakan DSR Anda:</p>
-            <p class="font-display font-black text-2xl text-brand-navy mt-1" id="dsrStatusText">
+            <p class="text-[10px] sm:text-xs font-bold text-brand-navy uppercase">Status Kelayakan DSR Anda:</p>
+            <p class="font-display font-black text-lg sm:text-2xl text-brand-navy mt-1" id="dsrStatusText">
               DSR Anda: <span class="text-emerald-600">40.0% (Sangat Baik / Layak)</span>
             </p>
           </div>
-          <a href="semak-kelayakan.html" class="bg-brand-navy text-white hover:bg-brand-navyDeep font-bold text-xs px-6 py-3 rounded-full transition-all">
-            Dapatkan Laporan Penuh &rarr;
+          <a href="semak-kelayakan.html" class="text-center bg-brand-navy text-white hover:bg-brand-navyDeep font-bold text-xs px-5 py-3 rounded-full transition-all">
+            Laporan Penuh &rarr;
           </a>
         </div>
 
@@ -294,7 +311,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-white border-t border-amber-900/5 pt-16 pb-12 text-center text-xs text-brand-textMuted">
+  <footer class="bg-white border-t border-amber-900/5 pt-12 pb-10 text-center text-xs text-brand-textMuted">
     <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara.</p>
   </footer>
 
@@ -302,9 +319,21 @@
     lucide.createIcons();
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    const menuIcon = document.getElementById('menuIcon');
+    
+    let isMenuOpen = false;
+    mobileMenuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      if (isMenuOpen) {
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    });
 
-    // Loan Calculator
+    // Loan Calculator Logic
     const loanAmountInput = document.getElementById('loanAmountInput');
     const tenureInput = document.getElementById('tenureInput');
     const rateInput = document.getElementById('rateInput');
@@ -352,7 +381,6 @@
     function calculateDSR() {
       const salary = parseFloat(netSalaryInput.value) || 1;
       const commitment = parseFloat(existingCommitmentInput.value) || 0;
-      
       const dsr = (commitment / salary) * 100;
       
       if (dsr <= 50) {
@@ -360,7 +388,7 @@
       } else if (dsr <= 70) {
         dsrStatusText.innerHTML = `DSR Anda: <span class="text-amber-600">${dsr.toFixed(1)}% (Sederhana / Boleh Dipertimbangkan)</span>`;
       } else {
-        dsrStatusText.innerHTML = `DSR Anda: <span class="text-rose-600">${dsr.toFixed(1)}% (Tinggi / Perlu Skim Penyatuan Hutang)</span>`;
+        dsrStatusText.innerHTML = `DSR Anda: <span class="text-rose-600">${dsr.toFixed(1)}% (Tinggi / Perlu Penyatuan Hutang)</span>`;
       }
     }
 

@@ -57,17 +57,17 @@
   </script>
 </head>
 
-<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep">
+<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep overflow-x-hidden">
 
   <!-- Top Info Bar -->
-  <div class="bg-brand-navyDeep text-white/90 text-xs py-2 px-4 text-center border-b border-white/10 hidden sm:block">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-4">
-        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen & Patuh Syariah</span>
-        <span class="text-white/40">|</span>
-        <span class="flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Sebarang Wang Pendahuluan (*Zero Upfront Fee*)</span>
+  <div class="bg-brand-navyDeep text-white/90 text-[11px] sm:text-xs py-2 px-3 sm:px-4 text-center border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-4">
+      <div class="flex items-center justify-center gap-2 sm:gap-4">
+        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen</span>
+        <span class="text-white/40 hidden sm:inline">|</span>
+        <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Caj Wang Pendahuluan</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2">
         <span class="text-brand-yellow font-medium">Talian Konsultasi:</span>
         <a href="tel:+60123456789" class="hover:underline text-white font-bold">+6012-345 6789</a>
       </div>
@@ -76,18 +76,18 @@
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md transition-all duration-300 border-b border-amber-900/5">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-16 sm:h-20 lg:h-24 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all duration-300 shadow-md">
+      <a href="index.html" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-lg sm:text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all shadow-md">
           C<span class="text-brand-yellow group-hover:text-brand-navyDeep font-bold">+</span>
         </div>
         <div class="flex flex-col">
-          <span class="font-display font-black text-2xl tracking-tight text-brand-navy leading-none">
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-brand-navy leading-none">
             consult<span class="text-brand-yellow">plus</span>
           </span>
-          <span class="text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
+          <span class="text-[8px] sm:text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
         </div>
       </a>
 
@@ -95,7 +95,6 @@
       <nav class="hidden lg:flex items-center space-x-7 text-[15px] font-semibold text-brand-navy">
         <a href="tentang-kami.html" class="hover:text-brand-yellow transition-colors">Tentang Kami</a>
         
-        <!-- Dropdown: Servis Pinjaman -->
         <div class="relative group cursor-pointer flex items-center gap-1 hover:text-brand-yellow transition-colors py-2">
           <a href="servis-pinjaman.html" class="hover:text-brand-yellow">Servis Pinjaman</a>
           <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
@@ -128,28 +127,46 @@
 
       <!-- Right Action CTA -->
       <div class="hidden sm:flex items-center gap-4">
-        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2.5 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all duration-300 hover:scale-105 active:scale-95">
+        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all hover:scale-105 active:scale-95">
           <span>Semak Kelayakan</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobileMenuBtn" class="lg:hidden p-2 text-brand-navy hover:text-brand-yellow focus:outline-none" aria-label="Buka Menu">
-        <i data-lucide="menu" class="w-7 h-7"></i>
+      <!-- Mobile Menu Button with Toggle State -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl bg-white border border-gray-200 text-brand-navy hover:text-brand-yellow focus:outline-none shadow-sm" aria-label="Buka Menu">
+        <i id="menuIcon" data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-lg border-b border-gray-100 px-6 py-6 space-y-4 shadow-2xl">
-      <a href="tentang-kami.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Tentang Kami</a>
-      <a href="servis-pinjaman.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Servis Pinjaman</a>
-      <a href="kalkulator.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kalkulator Pinjaman</a>
-      <a href="kisah-kejayaan.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kisah Kejayaan</a>
-      <a href="panel-bank.html" class="block text-base font-semibold text-brand-yellow py-1">Panel Bank Kami</a>
-      <a href="soalan-lazim.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Soalan Lazim (FAQ)</a>
-      <div class="pt-4 border-t border-gray-100">
-        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow">
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-xl border-b border-gray-200 px-5 py-6 space-y-3 shadow-2xl">
+      <a href="tentang-kami.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Tentang Kami</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="servis-pinjaman.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Servis Pinjaman</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="kalkulator.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Kalkulator Ansuran & DSR</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="kisah-kejayaan.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Kisah Kejayaan Pelanggan</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <a href="panel-bank.html" class="flex items-center justify-between text-base font-bold text-brand-yellow py-2 px-3 rounded-xl bg-brand-yellowLight">
+        <span>Panel Bank Kami</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-brand-yellow"></i>
+      </a>
+      <a href="soalan-lazim.html" class="flex items-center justify-between text-base font-bold text-brand-navy hover:text-brand-yellow py-2 px-3 rounded-xl hover:bg-brand-cream transition-all">
+        <span>Soalan Lazim (FAQ)</span>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
+      </a>
+      <div class="pt-3 border-t border-gray-100">
+        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow text-sm">
           <span>Semak Kelayakan Percuma</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -158,31 +175,31 @@
   </header>
 
   <!-- PAGE HERO -->
-  <section class="py-16 lg:py-20 bg-brand-cream border-b border-amber-900/5 text-center">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-4">
-      <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-4 py-1.5 rounded-full inline-block">
+  <section class="py-12 sm:py-16 lg:py-20 bg-brand-cream border-b border-amber-900/5 text-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-3 sm:space-y-4">
+      <span class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full inline-block">
         JARINGAN PERBANKAN RASMI
       </span>
-      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-brand-navy">
-        15+ Panel Bank <span class="text-brand-yellow">& Institusi Kewangan</span>
+      <h1 class="font-display font-black text-3xl sm:text-4xl lg:text-6xl text-brand-navy">
+        15+ Panel Bank <span class="text-brand-yellow">& Institusi</span>
       </h1>
-      <p class="text-base sm:text-lg text-brand-textMuted max-w-2xl mx-auto">
-        Kami mempunyai akses terus kepada pegawai pengunderaitan di bank-bank komersial dan institusi kewangan terkemuka di Malaysia.
+      <p class="text-xs sm:text-base text-brand-textMuted max-w-xl mx-auto">
+        Akses terus kepada pegawai kredit di institusi kewangan terkemuka di Malaysia.
       </p>
     </div>
   </section>
 
   <!-- BANKS GRID -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+  <section class="py-12 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
       
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         
         <!-- Bank 1: Maybank -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">MAYBANK</span>
-            <span class="text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-1 rounded-full">Konvensional & Islamik</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">MAYBANK</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-0.5 rounded-full">Konvensional & Islamik</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Pakej Pinjaman Peribadi dan Perumahan dengan kadar fleksibel serta skim pembiayaan SME tanpa cagaran.
@@ -190,10 +207,10 @@
         </div>
 
         <!-- Bank 2: CIMB -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">CIMB BANK</span>
-            <span class="text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-1 rounded-full">Kelulusan Pantas</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">CIMB BANK</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-0.5 rounded-full">Kelulusan Pantas</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Pakej pembiayaan ekspres dengan tempoh sehingga 7 tahun dan promosi kadar faedah kompetitif.
@@ -201,10 +218,10 @@
         </div>
 
         <!-- Bank 3: RHB -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">RHB BANK</span>
-            <span class="text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-1 rounded-full">SME & Bisnes</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">RHB BANK</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-0.5 rounded-full">SME & Bisnes</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Kemudahan modal pusingan perniagaan dan pembiayaan semula hartanah komersial serta kediaman.
@@ -212,10 +229,10 @@
         </div>
 
         <!-- Bank 4: Public Bank -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">PUBLIC BANK</span>
-            <span class="text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-1 rounded-full">Kadar Terendah</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">PUBLIC BANK</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-brand-yellow text-brand-navyDeep px-2.5 py-0.5 rounded-full">Kadar Terendah</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Kadar faedah terendah untuk pemohon dengan rekod profil CCRIS dan penarafan kredit cemerlang.
@@ -223,10 +240,10 @@
         </div>
 
         <!-- Bank 5: Bank Islam & BSN -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">BANK ISLAM / BSN</span>
-            <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full">Penjawat Awam</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">BANK ISLAM / BSN</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">Penjawat Awam</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Skim potongan gaji khas kakitangan kerajaan (BPA) dengan kadar keuntungan tetap serendah 2.88%.
@@ -234,10 +251,10 @@
         </div>
 
         <!-- Bank 6: MBSB / Koperasi -->
-        <div class="p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm hover:shadow-card transition-all">
-          <div class="flex justify-between items-center mb-4">
-            <span class="font-display font-black text-2xl text-brand-navy">MBSB / KOPERASI</span>
-            <span class="text-xs font-bold bg-brand-navy text-white px-2.5 py-1 rounded-full">Penyatuan Hutang</span>
+        <div class="p-5 sm:p-6 bg-brand-cream rounded-3xl border border-amber-900/5 shadow-sm">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-display font-black text-xl sm:text-2xl text-brand-navy">MBSB / KOPERASI</span>
+            <span class="text-[10px] sm:text-xs font-bold bg-brand-navy text-white px-2.5 py-0.5 rounded-full">Penyatuan Hutang</span>
           </div>
           <p class="text-xs text-brand-textMuted leading-relaxed">
             Sesuai untuk pemohon dengan komitmen luar slip gaji atau isu tunggakan kredit ringan.
@@ -246,23 +263,23 @@
 
       </div>
 
-      <!-- Why Apply Through Agent Banner -->
-      <div class="mt-16 bg-brand-navy text-white p-8 sm:p-12 rounded-3xl sm:rounded-4xl shadow-xl">
-        <h3 class="font-display font-black text-2xl sm:text-3xl text-brand-yellow mb-4">
-          Mengapa Mohon Melalui ConsultPlus Berbanding Walk-In Sendiri Ke Bank?
+      <!-- Why Apply Through Agent Banner (Mobile Clean Stacking) -->
+      <div class="mt-10 sm:mt-16 bg-brand-navy text-white p-6 sm:p-10 rounded-3xl sm:rounded-4xl shadow-xl">
+        <h3 class="font-display font-black text-xl sm:text-2xl text-brand-yellow mb-4">
+          Mengapa Mohon Melalui ConsultPlus Berbanding Walk-In?
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm text-white/80">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-xs sm:text-sm text-white/80">
           <div>
             <h4 class="font-bold text-white mb-1">1. Elak Rekod Ditolak</h4>
-            <p class="text-xs">Jika anda memohon sendiri dan ditolak, rekod penolakan akan dicatat dalam CCRIS dan menyukarkan permohonan di bank lain.</p>
+            <p class="text-xs text-white/70">Permohonan disemak dahulu sebelum dihantar bagi melindungi skor CCRIS anda.</p>
           </div>
           <div>
             <h4 class="font-bold text-white mb-1">2. Perbandingan Kadar</h4>
-            <p class="text-xs">Kami membandingkan tawaran 15+ institusi serentak untuk pastikan anda dapat kadar faedah paling jimat.</p>
+            <p class="text-xs text-white/70">Kami bandingkan 15+ panel serentak untuk dapatkan kadar faedah paling jimat.</p>
           </div>
           <div>
             <h4 class="font-bold text-white mb-1">3. Urusan Dokumen Pantas</h4>
-            <p class="text-xs">Kami susun format pemarkahan DSR dan NDI mengikut kriteria tepat yang dimahukan oleh pihak bank.</p>
+            <p class="text-xs text-white/70">Format DSR dan NDI disusun mengikut piawaian tepat pihak bank.</p>
           </div>
         </div>
       </div>
@@ -271,18 +288,18 @@
   </section>
 
   <!-- CTA BANNER -->
-  <section class="bg-brand-navyDeep py-20 text-white text-center">
-    <div class="max-w-3xl mx-auto px-6 space-y-6">
-      <h2 class="font-display font-black text-3xl sm:text-4xl">Ketahui Bank Mana Paling Sesuai Untuk Anda</h2>
-      <a href="semak-kelayakan.html" class="inline-flex items-center gap-2 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold px-8 py-4 rounded-full shadow-glow-yellow transition-all">
-        <span>Semak Kelayakan Percuma Sekarang</span>
+  <section class="bg-brand-navyDeep py-14 sm:py-20 text-white text-center">
+    <div class="max-w-3xl mx-auto px-4 space-y-4 sm:space-y-6">
+      <h2 class="font-display font-black text-2xl sm:text-4xl">Ketahui Bank Mana Paling Sesuai Untuk Anda</h2>
+      <a href="semak-kelayakan.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold px-8 py-3.5 rounded-full shadow-glow-yellow transition-all">
+        <span>Semak Kelayakan Percuma</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-white border-t border-amber-900/5 pt-16 pb-12 text-center text-xs text-brand-textMuted">
+  <footer class="bg-white border-t border-amber-900/5 pt-12 pb-10 text-center text-xs text-brand-textMuted">
     <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara.</p>
   </footer>
 
@@ -290,7 +307,19 @@
     lucide.createIcons();
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    const menuIcon = document.getElementById('menuIcon');
+    
+    let isMenuOpen = false;
+    mobileMenuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      if (isMenuOpen) {
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    });
   </script>
 </body>
 </html>
