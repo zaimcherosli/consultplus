@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Borang Semakan Kelayakan Percuma — ConsultPlus</title>
+  <meta name="description" content="Hantar maklumat anda untuk semakan kelayakan pinjaman percuma bersama perunding ConsultPlus dalam masa 15 minit." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FAF7F0',
+              creamLight: '#FFFDF9',
+              yellow: '#F5A623',
+              yellowHover: '#E09618',
+              yellowLight: '#FEF6E9',
+              navy: '#0D276B',
+              navyDeep: '#081B4B',
+              navyCard: '#13358B',
+              navyLight: '#1E40AF',
+              blueAccent: '#2F6FED',
+              textMain: '#0D276B',
+              textMuted: '#586A8A',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive'],
+          },
+          borderRadius: {
+            'pill': '100px',
+            '4xl': '2rem',
+            '5xl': '2.5rem',
+            'arch': '9999px 9999px 2rem 2rem',
+          },
+          boxShadow: {
+            'glow-yellow': '0 10px 25px -5px rgba(245, 166, 35, 0.4)',
+            'card': '0 20px 40px -15px rgba(13, 39, 107, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep">
+
+  <!-- Top Info Bar -->
+  <div class="bg-brand-navyDeep text-white/90 text-xs py-2 px-4 text-center border-b border-white/10 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen & Patuh Syariah</span>
+        <span class="text-white/40">|</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Sebarang Wang Pendahuluan (*Zero Upfront Fee*)</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-brand-yellow font-medium">Talian Konsultasi:</span>
+        <a href="tel:+60123456789" class="hover:underline text-white font-bold">+6012-345 6789</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md transition-all duration-300 border-b border-amber-900/5">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all duration-300 shadow-md">
+          C<span class="text-brand-yellow group-hover:text-brand-navyDeep font-bold">+</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black text-2xl tracking-tight text-brand-navy leading-none">
+            consult<span class="text-brand-yellow">plus</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center space-x-7 text-[15px] font-semibold text-brand-navy">
+        <a href="tentang-kami.html" class="hover:text-brand-yellow transition-colors">Tentang Kami</a>
+        
+        <!-- Dropdown: Servis Pinjaman -->
+        <div class="relative group cursor-pointer flex items-center gap-1 hover:text-brand-yellow transition-colors py-2">
+          <a href="servis-pinjaman.html" class="hover:text-brand-yellow">Servis Pinjaman</a>
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+          
+          <div class="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl py-3 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+            <a href="servis-pinjaman.html#peribadi" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="user-check" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Pinjaman Peribadi</span>
+            </a>
+            <a href="servis-pinjaman.html#perniagaan" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="briefcase" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Pinjaman Perniagaan SME</span>
+            </a>
+            <a href="servis-pinjaman.html#rumah" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="home" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Refinance Rumah</span>
+            </a>
+            <a href="servis-pinjaman.html#penyatuan" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="layers" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Penyatuan Hutang</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="kalkulator.html" class="hover:text-brand-yellow transition-colors">Kalkulator</a>
+        <a href="kisah-kejayaan.html" class="hover:text-brand-yellow transition-colors">Kisah Kejayaan</a>
+        <a href="panel-bank.html" class="hover:text-brand-yellow transition-colors">Panel Bank</a>
+        <a href="soalan-lazim.html" class="hover:text-brand-yellow transition-colors">Soalan Lazim</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2.5 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all duration-300 hover:scale-105 active:scale-95">
+          <span>Semak Kelayakan</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-brand-navy hover:text-brand-yellow focus:outline-none" aria-label="Buka Menu">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-lg border-b border-gray-100 px-6 py-6 space-y-4 shadow-2xl">
+      <a href="tentang-kami.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Tentang Kami</a>
+      <a href="servis-pinjaman.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Servis Pinjaman</a>
+      <a href="kalkulator.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kalkulator Pinjaman</a>
+      <a href="kisah-kejayaan.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kisah Kejayaan</a>
+      <a href="panel-bank.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Panel Bank Kami</a>
+      <a href="soalan-lazim.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Soalan Lazim (FAQ)</a>
+      <div class="pt-4 border-t border-gray-100">
+        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow">
+          <span>Semak Kelayakan Percuma</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORM SECTION -->
+  <section class="py-20 bg-brand-cream">
+    <div class="max-w-4xl mx-auto px-6 sm:px-8">
+      
+      <div class="text-center mb-12 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-4 py-1.5 rounded-full inline-block">
+          SEMALAM PERCUMA DALAM 15 MINIT
+        </span>
+        <h1 class="font-display font-black text-4xl sm:text-5xl text-brand-navy">
+          Borang Semakan Kelayakan <span class="text-brand-yellow">Pinjaman</span>
+        </h1>
+        <p class="text-sm sm:text-base text-brand-textMuted max-w-xl mx-auto">
+          Isi maklumat ringkas anda. Pegawai perunding ConsultPlus akan membuat semakan DSR dan menghubungi anda secara peribadi.
+        </p>
+      </div>
+
+      <div class="bg-white p-8 sm:p-12 rounded-3xl sm:rounded-4xl shadow-card border border-amber-900/10">
+        
+        <form id="fullEligibilityForm" class="space-y-6">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Nama Penuh (seperti dalam IC):</label>
+              <input type="text" required placeholder="Contoh: Muhammad Firdaus" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Nombor Telefon / WhatsApp:</label>
+              <input type="tel" required placeholder="Contoh: 012-3456789" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Alamat Emel:</label>
+              <input type="email" required placeholder="Contoh: nama@gmail.com" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Sektor Pekerjaan:</label>
+              <select class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
+                <option value="kerajaan">Kakitangan Kerajaan / Badan Berkanun</option>
+                <option value="swasta">Pekerja Swasta / GLC</option>
+                <option value="perniagaan">Pemilik Perniagaan (Sdn Bhd / Enterprise)</option>
+                <option value="sendiri">Bekerja Sendiri / Gig Economy</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Gaji Bersih Bulanan (RM):</label>
+              <input type="number" required placeholder="Contoh: 4500" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-navy mb-2">Jumlah Pinjaman Diperlukan (RM):</label>
+              <input type="number" required placeholder="Contoh: 80000" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-brand-navy mb-2">Tujuan Pembiayaan Utama:</label>
+            <select class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
+              <option value="penyatuan">Penyatuan Hutang (Jimat komitmen bulanan)</option>
+              <option value="peribadi">Kegunaan Peribadi / Ubahsuai Rumah / Kecemasan</option>
+              <option value="perniagaan">Modal Perniagaan / Pengembangan Syarikat</option>
+              <option value="rumah">Refinancing Rumah (Cash-out)</option>
+            </select>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="w-full bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-black text-lg py-4 rounded-full shadow-glow-yellow transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
+              <span>Hantar Permohonan Semakan Percuma</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <p class="text-center text-xs text-brand-textMuted mt-4">
+            <i data-lucide="lock" class="w-3.5 h-3.5 inline mr-1 text-brand-yellow"></i>
+            Maklumat anda dilindungi 100% di bawah Akta Perlindungan Data Peribadi (PDPA).
+          </p>
+        </form>
+
+        <div id="fullFormSuccess" class="hidden p-6 bg-emerald-50 border border-emerald-200 rounded-3xl text-center space-y-4">
+          <div class="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto shadow-md">
+            <i data-lucide="check" class="w-8 h-8"></i>
+          </div>
+          <h3 class="font-display font-black text-2xl text-emerald-900">Permohonan Berjaya Diterima!</h3>
+          <p class="text-sm text-emerald-800 max-w-md mx-auto">
+            Pegawai perunding kewangan kami sedang menyemak profil anda dan akan menghubungi anda melalui WhatsApp dalam masa 15 minit.
+          </p>
+          <a href="index.html" class="inline-block bg-brand-navy text-white text-xs font-bold px-6 py-3 rounded-full hover:bg-brand-navyDeep transition-all">
+            Kembali ke Laman Utama
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Contact Office Info -->
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        <div class="p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
+          <i data-lucide="phone-call" class="w-6 h-6 text-brand-yellow mx-auto mb-2"></i>
+          <h4 class="font-bold text-sm text-brand-navy">Talian Telefon</h4>
+          <p class="text-xs text-brand-textMuted mt-1">+6012-345 6789</p>
+        </div>
+        <div class="p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
+          <i data-lucide="mail" class="w-6 h-6 text-brand-yellow mx-auto mb-2"></i>
+          <h4 class="font-bold text-sm text-brand-navy">Emel Rasmi</h4>
+          <p class="text-xs text-brand-textMuted mt-1">support@consultplus.my</p>
+        </div>
+        <div class="p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
+          <i data-lucide="clock" class="w-6 h-6 text-brand-yellow mx-auto mb-2"></i>
+          <h4 class="font-bold text-sm text-brand-navy">Waktu Operasi</h4>
+          <p class="text-xs text-brand-textMuted mt-1">Isnin - Jumaat: 9.00am - 6.00pm</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-amber-900/5 pt-16 pb-12 text-center text-xs text-brand-textMuted">
+    <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara.</p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+    const fullEligibilityForm = document.getElementById('fullEligibilityForm');
+    const fullFormSuccess = document.getElementById('fullFormSuccess');
+
+    fullEligibilityForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fullEligibilityForm.classList.add('opacity-50', 'pointer-events-none');
+      setTimeout(() => {
+        fullEligibilityForm.classList.add('hidden');
+        fullFormSuccess.classList.remove('hidden');
+        lucide.createIcons();
+      }, 600);
+    });
+  </script>
+</body>
+</html>

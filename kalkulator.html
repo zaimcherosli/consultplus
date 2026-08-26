@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator Pinjaman & DSR — ConsultPlus</title>
+  <meta name="description" content="Kira anggaran ansuran bulanan, jumlah faedah, dan nisbah khidmat hutang (DSR) pinjaman anda secara interaktif." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FAF7F0',
+              creamLight: '#FFFDF9',
+              yellow: '#F5A623',
+              yellowHover: '#E09618',
+              yellowLight: '#FEF6E9',
+              navy: '#0D276B',
+              navyDeep: '#081B4B',
+              navyCard: '#13358B',
+              navyLight: '#1E40AF',
+              blueAccent: '#2F6FED',
+              textMain: '#0D276B',
+              textMuted: '#586A8A',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive'],
+          },
+          borderRadius: {
+            'pill': '100px',
+            '4xl': '2rem',
+            '5xl': '2.5rem',
+            'arch': '9999px 9999px 2rem 2rem',
+          },
+          boxShadow: {
+            'glow-yellow': '0 10px 25px -5px rgba(245, 166, 35, 0.4)',
+            'card': '0 20px 40px -15px rgba(13, 39, 107, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-cream text-brand-textMain font-sans antialiased selection:bg-brand-yellow selection:text-brand-navyDeep">
+
+  <!-- Top Info Bar -->
+  <div class="bg-brand-navyDeep text-white/90 text-xs py-2 px-4 text-center border-b border-white/10 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-yellow"></i> 100% Panel Bank Berlesen & Patuh Syariah</span>
+        <span class="text-white/40">|</span>
+        <span class="flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 text-brand-yellow"></i> Tiada Sebarang Wang Pendahuluan (*Zero Upfront Fee*)</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-brand-yellow font-medium">Talian Konsultasi:</span>
+        <a href="tel:+60123456789" class="hover:underline text-white font-bold">+6012-345 6789</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md transition-all duration-300 border-b border-amber-900/5">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-full bg-brand-navy flex items-center justify-center font-display font-black text-xl text-white group-hover:bg-brand-yellow group-hover:text-brand-navyDeep transition-all duration-300 shadow-md">
+          C<span class="text-brand-yellow group-hover:text-brand-navyDeep font-bold">+</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-black text-2xl tracking-tight text-brand-navy leading-none">
+            consult<span class="text-brand-yellow">plus</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-widest text-brand-textMuted font-bold">Loan & Advisory</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center space-x-7 text-[15px] font-semibold text-brand-navy">
+        <a href="tentang-kami.html" class="hover:text-brand-yellow transition-colors">Tentang Kami</a>
+        
+        <!-- Dropdown: Servis Pinjaman -->
+        <div class="relative group cursor-pointer flex items-center gap-1 hover:text-brand-yellow transition-colors py-2">
+          <a href="servis-pinjaman.html" class="hover:text-brand-yellow">Servis Pinjaman</a>
+          <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+          
+          <div class="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl py-3 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+            <a href="servis-pinjaman.html#peribadi" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="user-check" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Pinjaman Peribadi</span>
+            </a>
+            <a href="servis-pinjaman.html#perniagaan" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="briefcase" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Pinjaman Perniagaan SME</span>
+            </a>
+            <a href="servis-pinjaman.html#rumah" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="home" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Refinance Rumah</span>
+            </a>
+            <a href="servis-pinjaman.html#penyatuan" class="flex items-center gap-3 px-4 py-2.5 text-sm text-brand-navy hover:bg-brand-yellowLight hover:text-brand-yellow">
+              <i data-lucide="layers" class="w-4 h-4 text-brand-yellow"></i>
+              <span>Penyatuan Hutang</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="kalkulator.html" class="text-brand-yellow font-bold border-b-2 border-brand-yellow pb-1">Kalkulator</a>
+        <a href="kisah-kejayaan.html" class="hover:text-brand-yellow transition-colors">Kisah Kejayaan</a>
+        <a href="panel-bank.html" class="hover:text-brand-yellow transition-colors">Panel Bank</a>
+        <a href="soalan-lazim.html" class="hover:text-brand-yellow transition-colors">Soalan Lazim</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="semak-kelayakan.html" class="inline-flex items-center gap-2.5 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm px-6 py-3 rounded-full shadow-glow-yellow transition-all duration-300 hover:scale-105 active:scale-95">
+          <span>Semak Kelayakan</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-brand-navy hover:text-brand-yellow focus:outline-none" aria-label="Buka Menu">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/98 backdrop-blur-lg border-b border-gray-100 px-6 py-6 space-y-4 shadow-2xl">
+      <a href="tentang-kami.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Tentang Kami</a>
+      <a href="servis-pinjaman.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Servis Pinjaman</a>
+      <a href="kalkulator.html" class="block text-base font-semibold text-brand-yellow py-1">Kalkulator Pinjaman</a>
+      <a href="kisah-kejayaan.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Kisah Kejayaan</a>
+      <a href="panel-bank.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Panel Bank Kami</a>
+      <a href="soalan-lazim.html" class="block text-base font-semibold text-brand-navy hover:text-brand-yellow py-1">Soalan Lazim (FAQ)</a>
+      <div class="pt-4 border-t border-gray-100">
+        <a href="semak-kelayakan.html" class="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-navyDeep font-bold py-3.5 rounded-full shadow-glow-yellow">
+          <span>Semak Kelayakan Percuma</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="py-16 lg:py-20 bg-brand-cream border-b border-amber-900/5 text-center">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-yellow bg-brand-navy px-4 py-1.5 rounded-full inline-block">
+        ALAT PENGIRAAN PINTAR
+      </span>
+      <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-brand-navy">
+        Kalkulator Pinjaman & <span class="text-brand-yellow">DSR Interaktif</span>
+      </h1>
+      <p class="text-base sm:text-lg text-brand-textMuted max-w-2xl mx-auto">
+        Rancang komitmen kewangan anda secara tepat sebelum membuat permohonan ke bank.
+      </p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR SECTION -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
+      
+      <!-- Box 1: Loan Installment Calculator -->
+      <div class="bg-brand-cream p-6 sm:p-10 rounded-3xl sm:rounded-4xl shadow-card border border-amber-900/10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+        
+        <!-- Controls Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <h2 class="font-display font-black text-2xl text-brand-navy">1. Kira Ansuran Bulanan</h2>
+
+          <!-- Loan Amount Slider -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="font-bold text-sm text-brand-navy">Jumlah Pinjaman:</label>
+              <span id="loanAmountDisplay" class="font-display font-black text-xl text-brand-yellow">RM 60,000</span>
+            </div>
+            <input type="range" id="loanAmountInput" min="5000" max="500000" step="5000" value="60000" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
+            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+              <span>RM 5,000</span>
+              <span>RM 250,000</span>
+              <span>RM 500,000</span>
+            </div>
+          </div>
+
+          <!-- Tenor Slider -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="font-bold text-sm text-brand-navy">Tempoh Pinjaman:</label>
+              <span id="tenureDisplay" class="font-display font-black text-xl text-brand-yellow">7 Tahun (84 Bulan)</span>
+            </div>
+            <input type="range" id="tenureInput" min="1" max="10" step="1" value="7" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
+            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+              <span>1 Tahun</span>
+              <span>5 Tahun</span>
+              <span>10 Tahun</span>
+            </div>
+          </div>
+
+          <!-- Interest Rate Slider -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="font-bold text-sm text-brand-navy">Kadar Faedah Setahun:</label>
+              <span id="rateDisplay" class="font-display font-black text-xl text-brand-yellow">3.88% p.a.</span>
+            </div>
+            <input type="range" id="rateInput" min="2.5" max="8.5" step="0.1" value="3.88" class="w-full h-2.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-yellow" />
+            <div class="flex justify-between text-[11px] text-brand-textMuted mt-1">
+              <span>2.50%</span>
+              <span>5.00%</span>
+              <span>8.50%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Card -->
+        <div class="lg:col-span-5 bg-brand-navy text-white p-7 rounded-3xl space-y-6 text-center shadow-xl">
+          <span class="text-xs uppercase font-bold tracking-widest text-brand-yellow">Anggaran Bulanan</span>
+          
+          <div>
+            <p class="font-display font-black text-4xl sm:text-5xl text-brand-yellow" id="monthlyInstallmentDisplay">
+              RM 908
+            </p>
+            <p class="text-xs text-white/70 mt-1">sebulan</p>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 space-y-2 text-xs text-left">
+            <div class="flex justify-between">
+              <span class="text-white/70">Jumlah Faedah:</span>
+              <span class="font-bold text-white" id="totalInterestDisplay">RM 16,296</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-white/70">Jumlah Bayaran Balik:</span>
+              <span class="font-bold text-white" id="totalRepaymentDisplay">RM 76,296</span>
+            </div>
+          </div>
+
+          <a href="semak-kelayakan.html" class="w-full inline-flex items-center justify-center gap-2 bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-bold text-sm py-3.5 rounded-full transition-all shadow-glow-yellow">
+            <span>Mohon Pakej Ini Sekarang</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+      </div>
+
+
+      <!-- Box 2: DSR (Debt Service Ratio) Estimator -->
+      <div class="bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-sm space-y-6">
+        <div class="border-b border-gray-100 pb-4">
+          <h2 class="font-display font-black text-2xl text-brand-navy">2. Anggaran Nisbah Khidmat Hutang (DSR)</h2>
+          <p class="text-sm text-brand-textMuted">Ketahui sama ada komitmen bulanan anda masih berada dalam paras selamat pihak bank (bawah 60% - 70%).</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold text-brand-navy mb-2">Gaji Bersih Bulanan (RM):</label>
+            <input type="number" id="netSalaryInput" value="4500" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-bold focus:outline-none focus:border-brand-yellow" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-brand-navy mb-2">Jumlah Komitmen Bank Sedia Ada (RM):</label>
+            <input type="number" id="existingCommitmentInput" value="1800" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-bold focus:outline-none focus:border-brand-yellow" />
+          </div>
+        </div>
+
+        <div class="p-6 bg-brand-yellowLight rounded-2xl border border-brand-yellow/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <p class="text-xs font-bold text-brand-navy uppercase">Status Kelayakan DSR Anda:</p>
+            <p class="font-display font-black text-2xl text-brand-navy mt-1" id="dsrStatusText">
+              DSR Anda: <span class="text-emerald-600">40.0% (Sangat Baik / Layak)</span>
+            </p>
+          </div>
+          <a href="semak-kelayakan.html" class="bg-brand-navy text-white hover:bg-brand-navyDeep font-bold text-xs px-6 py-3 rounded-full transition-all">
+            Dapatkan Laporan Penuh &rarr;
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-amber-900/5 pt-16 pb-12 text-center text-xs text-brand-textMuted">
+    <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara.</p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+    // Loan Calculator
+    const loanAmountInput = document.getElementById('loanAmountInput');
+    const tenureInput = document.getElementById('tenureInput');
+    const rateInput = document.getElementById('rateInput');
+
+    const loanAmountDisplay = document.getElementById('loanAmountDisplay');
+    const tenureDisplay = document.getElementById('tenureDisplay');
+    const rateDisplay = document.getElementById('rateDisplay');
+    const monthlyInstallmentDisplay = document.getElementById('monthlyInstallmentDisplay');
+    const totalInterestDisplay = document.getElementById('totalInterestDisplay');
+    const totalRepaymentDisplay = document.getElementById('totalRepaymentDisplay');
+
+    function formatRM(num) {
+      return 'RM ' + Math.round(num).toLocaleString('en-US');
+    }
+
+    function calculateLoan() {
+      const principal = parseFloat(loanAmountInput.value);
+      const years = parseInt(tenureInput.value);
+      const rate = parseFloat(rateInput.value) / 100;
+
+      loanAmountDisplay.textContent = formatRM(principal);
+      tenureDisplay.textContent = `${years} Tahun (${years * 12} Bulan)`;
+      rateDisplay.textContent = `${rateInput.value}% p.a.`;
+
+      const totalInterest = principal * rate * years;
+      const totalRepayment = principal + totalInterest;
+      const monthlyInstallment = totalRepayment / (years * 12);
+
+      monthlyInstallmentDisplay.textContent = formatRM(monthlyInstallment);
+      totalInterestDisplay.textContent = formatRM(totalInterest);
+      totalRepaymentDisplay.textContent = formatRM(totalRepayment);
+
+      calculateDSR();
+    }
+
+    loanAmountInput.addEventListener('input', calculateLoan);
+    tenureInput.addEventListener('input', calculateLoan);
+    rateInput.addEventListener('input', calculateLoan);
+
+    // DSR Calculator
+    const netSalaryInput = document.getElementById('netSalaryInput');
+    const existingCommitmentInput = document.getElementById('existingCommitmentInput');
+    const dsrStatusText = document.getElementById('dsrStatusText');
+
+    function calculateDSR() {
+      const salary = parseFloat(netSalaryInput.value) || 1;
+      const commitment = parseFloat(existingCommitmentInput.value) || 0;
+      
+      const dsr = (commitment / salary) * 100;
+      
+      if (dsr <= 50) {
+        dsrStatusText.innerHTML = `DSR Anda: <span class="text-emerald-600">${dsr.toFixed(1)}% (Sangat Baik / Peluang Lulus Tinggi)</span>`;
+      } else if (dsr <= 70) {
+        dsrStatusText.innerHTML = `DSR Anda: <span class="text-amber-600">${dsr.toFixed(1)}% (Sederhana / Boleh Dipertimbangkan)</span>`;
+      } else {
+        dsrStatusText.innerHTML = `DSR Anda: <span class="text-rose-600">${dsr.toFixed(1)}% (Tinggi / Perlu Skim Penyatuan Hutang)</span>`;
+      }
+    }
+
+    netSalaryInput.addEventListener('input', calculateDSR);
+    existingCommitmentInput.addEventListener('input', calculateDSR);
+
+    calculateLoan();
+  </script>
+</body>
+</html>
