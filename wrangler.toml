@@ -1,0 +1,7 @@
+﻿name = "consultplus"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "CONSULTPLUS_KV"
+id = "e75dae79a7b1444faaa6bc4ca6f13fc0"

@@ -635,29 +635,55 @@ document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
     status: 'AKTIF'
   };
 
-  // Update local memory and localStorage immediately
-  const existingIdx = currentAgents.findIndex(x => x.id === id);
-  if (existingIdx >= 0) {
-    currentAgents[existingIdx] = { ...currentAgents[existingIdx], ...payload };
-  } else {
-    currentAgents.push(payload);
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Simpan & Kemaskini Laman Web';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sedang memuat naik & menyimpan...</span>';
   }
-  currentAgents.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
-  localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
-  renderAgentsGrid();
-  closeAgentModal();
 
-  alert(`Berjaya! Gambar dan maklumat ${name} telah dikemaskini.`);
-
-  // Send to backend API
   try {
-    await fetch(`${API_BASE}/admin/team`, {
+    const res = await fetch(`${API_BASE}/admin/team`, {
       method: idStr ? 'PUT' : 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(payload)
     });
+    const data = await res.json();
+    
+    if (data && data.team && Array.isArray(data.team)) {
+      currentAgents = data.team;
+    } else {
+      const existingIdx = currentAgents.findIndex(x => x.id === id);
+      if (existingIdx >= 0) {
+        currentAgents[existingIdx] = { ...currentAgents[existingIdx], ...payload };
+      } else {
+        currentAgents.push(payload);
+      }
+      currentAgents.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    }
+
+    localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
+    renderAgentsGrid();
+    closeAgentModal();
+    alert(`Berjaya! Gambar dan maklumat ${name} telah disimpan dan diselaraskan secara langsung ke laman web.`);
   } catch (err) {
     console.error('API sync error:', err);
+    // Fallback locally
+    const existingIdx = currentAgents.findIndex(x => x.id === id);
+    if (existingIdx >= 0) {
+      currentAgents[existingIdx] = { ...currentAgents[existingIdx], ...payload };
+    } else {
+      currentAgents.push(payload);
+    }
+    localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
+    renderAgentsGrid();
+    closeAgentModal();
+    alert(`Berjaya disimpan!`);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
   }
 });
 
