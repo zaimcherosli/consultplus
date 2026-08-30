@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CMS Panel | ConsultPlus Loan & Advisory</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .tab-active { background-color: #0D276B !important; color: #ffffff !important; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen antialiased">
+
+  <!-- ================= 1. LOGIN SCREEN (LIGHT THEME) ================= -->
+  <div id="login-view" class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-100 via-slate-50 to-yellow-50/40">
+    <div class="max-w-md w-full bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-xl space-y-6">
+      
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 rounded-2xl bg-[#0D276B] mx-auto flex items-center justify-center font-black text-2xl text-white shadow-md">C<span class="text-[#F5A623] font-bold">+</span></div>
+        <h1 class="text-2xl font-extrabold text-slate-900 pt-2 tracking-tight">Admin CMS Panel</h1>
+        <p class="text-xs text-slate-500 font-medium">Pusat Kawalan & Pengurusan Operasi ConsultPlus</p>
+      </div>
+
+      <div id="login-alert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
+
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1.5">Nama Pengguna (Username):</label>
+          <input type="text" id="login-username" required placeholder="admin" value="admin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white focus:ring-2 focus:ring-[#0D276B]/20 transition">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1.5">Kata Laluan (Password):</label>
+          <input type="password" id="login-password" required placeholder="••••••••" value="ConsultPlus2026!" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white focus:ring-2 focus:ring-[#0D276B]/20 transition">
+        </div>
+
+        <button type="submit" id="login-btn" class="w-full py-3.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+          <span>Log Masuk Panel</span>
+        </button>
+      </form>
+
+      <div class="text-center border-t border-slate-100 pt-4">
+        <a href="/" class="text-xs font-semibold text-[#0D276B] hover:underline">Kembali ke Laman Web Utama</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. MAIN CMS DASHBOARD (LIGHT THEME) ================= -->
+  <div id="dashboard-view" class="hidden min-h-screen flex flex-col bg-slate-50">
+    
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-8 py-3 flex items-center justify-between shadow-sm">
+      <!-- Left: Logo & Brand -->
+      <div class="flex items-center gap-3">
+        <a href="/" target="_blank" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-[#0D276B] flex items-center justify-center font-black text-sm text-white shadow-sm">C<span class="text-[#F5A623] font-bold">+</span></div>
+          <span class="font-extrabold text-sm text-slate-900 hidden sm:inline">CMS Backend</span>
+        </a>
+      </div>
+
+      <!-- Right: Desktop Controls & Mobile Hamburger -->
+      <div class="flex items-center gap-3">
+        <!-- Desktop Web Link & User Info -->
+        <a href="/" target="_blank" class="hidden md:flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl border border-slate-200 transition">
+          <span>Lihat Laman Web</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        </a>
+        <div class="text-right hidden md:block">
+          <span id="user-display" class="block text-xs font-bold text-slate-900">Admin ConsultPlus</span>
+          <span class="block text-[10px] text-slate-500 font-medium">Super Administrator</span>
+        </div>
+        <!-- Desktop Logout Button -->
+        <button id="logout-btn" class="hidden md:flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-600 text-rose-700 hover:text-white border border-rose-200 text-xs font-bold transition shadow-sm" title="Log Keluar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Log Keluar</span>
+        </button>
+
+        <!-- Mobile Hamburger Button (On the Right) -->
+        <button id="admin-menu-toggle" class="md:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition focus:outline-none border border-slate-200 flex items-center justify-center" aria-label="Buka Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu (Hidden by default, shown via hamburger) -->
+    <div id="admin-mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 py-3 shadow-md space-y-1.5 sticky top-[57px] z-30">
+      <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 px-3 py-1">Menu Pengurusan</div>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-between tab-active" data-tab="tab-leads">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Peti Masuk Leads</span>
+        </span>
+        <span id="badge-leads-count-mobile" class="px-2 py-0.5 rounded-full bg-yellow-800 text-[10px] font-mono text-white">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-career">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>Permohonan Kerjaya</span>
+        </span>
+        <span id="badge-career-count-mobile" class="px-2 py-0.5 rounded-full bg-amber-500 text-[10px] font-mono text-white">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-agents">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span>Pengurusan Ejen Sah</span>
+        </span>
+        <span id="badge-agents-count-mobile" class="px-2 py-0.5 rounded-full bg-slate-200 text-[10px] font-mono text-slate-700">0</span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-testimonials">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <span>Testimoni Klien</span>
+        </span>
+      </button>
+      <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-settings">
+        <span class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span>Tetapan Web & WhatsApp</span>
+        </span>
+      </button>
+
+      <!-- Mobile User Status & Logout Inside Hamburger -->
+      <div class="pt-3 border-t border-slate-100 space-y-2">
+        <div class="flex items-center justify-between px-3 text-[11px] text-slate-500">
+          <span>Pengguna: <strong id="user-display-mobile" class="text-slate-800">Admin</strong></span>
+          <a href="/" target="_blank" class="text-[#0D276B] font-bold hover:underline">Lihat Web ↗</a>
+        </div>
+        <button id="logout-btn-mobile" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-600 hover:text-white border border-rose-200 transition flex items-center justify-between shadow-sm">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            <span>Log Keluar</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation Tabs (Hidden on mobile) -->
+    <div class="hidden md:block bg-white border-b border-slate-200 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto py-2.5 no-scrollbar">
+        <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 whitespace-nowrap tab-active" data-tab="tab-leads">
+          <span>Peti Masuk Leads</span>
+          <span id="badge-leads-count" class="px-1.5 py-0.5 rounded-full bg-yellow-800 text-[10px] font-mono text-white">0</span>
+        </button>
+        <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-career">
+          <span>Permohonan Kerjaya</span>
+          <span id="badge-career-count" class="px-1.5 py-0.5 rounded-full bg-amber-500 text-[10px] font-mono text-white">0</span>
+        </button>
+        <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-agents">
+          <span>Pengurusan Ejen Sah</span>
+          <span id="badge-agents-count" class="px-1.5 py-0.5 rounded-full bg-slate-200 text-[10px] font-mono text-slate-700">0</span>
+        </button>
+        <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-testimonials">
+          <span>Testimoni Klien</span>
+        </button>
+        <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-settings">
+          <span>Tetapan Web & WhatsApp</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 space-y-6">
+
+      <!-- ================= TAB 1: LEADS MANAGEMENT ================= -->
+      <section id="tab-leads" class="tab-content space-y-6">
+        
+        <!-- Stats Summary -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs font-medium text-slate-500">Jumlah Permohonan</span>
+            <span id="stat-total-leads" class="text-2xl font-extrabold text-slate-900 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-amber-700 font-bold">Permohonan Baru</span>
+            <span id="stat-baru-leads" class="text-2xl font-extrabold text-amber-600 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-blue-700 font-bold">Dalam Semakan Bank</span>
+            <span id="stat-semakan-leads" class="text-2xl font-extrabold text-blue-600 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-[#0D276B] font-bold">Kes Berjaya Lulus</span>
+            <span id="stat-lulus-leads" class="text-2xl font-extrabold text-yellow-600 font-mono block">0</span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:flex md:items-center gap-2.5">
+            <select id="filter-lead-status" class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+              <option value="ALL">Semua Status</option>
+              <option value="BARU">BARU</option>
+              <option value="DALAM SEMAKAN">DALAM SEMAKAN</option>
+              <option value="HANTAR KE BANK">HANTAR KE BANK</option>
+              <option value="LULUS">LULUS</option>
+              <option value="DITOLAK">DITOLAK</option>
+            </select>
+            <input type="text" id="search-lead" placeholder="Cari nama, telefon, sektor..." class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0D276B] focus:bg-white flex-1 md:w-64 transition">
+            
+            <div class="grid grid-cols-2 sm:flex items-center gap-2 sm:ml-auto">
+              <button id="btn-refresh-leads" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition text-center">
+                Muat Semula
+              </button>
+              <button id="btn-export-csv" class="w-full sm:w-auto px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm text-center">
+                <span>Export CSV</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Cards View (Visible on Mobile Only) -->
+        <div id="leads-cards-container" class="md:hidden space-y-3">
+          <div class="text-center py-8 text-slate-400 text-xs bg-white rounded-2xl border border-slate-200/80 p-6">
+            Memuatkan senarai permohonan...
+          </div>
+        </div>
+
+        <!-- Desktop Table Container (Visible on Desktop Only) -->
+        <div class="hidden md:block bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-700">
+              <thead class="bg-slate-50 text-slate-600 uppercase text-[10px] font-bold tracking-wider border-b border-slate-200">
+                <tr>
+                  <th class="py-3.5 px-4">ID / Tarikh</th>
+                  <th class="py-3.5 px-4">Pemohon & WhatsApp</th>
+                  <th class="py-3.5 px-4">Sektor & Gaji</th>
+                  <th class="py-3.5 px-4">Isu Kredit / Tujuan</th>
+                  <th class="py-3.5 px-4">Status Kes</th>
+                  <th class="py-3.5 px-4 text-right">Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="leads-table-body" class="divide-y divide-slate-100">
+                <tr>
+                  <td colspan="6" class="text-center py-8 text-slate-400">Memuatkan senarai permohonan...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= TAB 2: AGENTS MANAGEMENT ================= -->
+      <section id="tab-agents" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Direktori Ejen & Perunding Sah</h2>
+            <p class="text-xs text-slate-500">Kawal status ejen untuk portal anti-scam (verify.html)</p>
+          </div>
+          <button id="btn-add-agent-modal" class="px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
+            <span>Tambah Ejen Baharu</span>
+          </button>
+        </div>
+
+        <div id="agents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: TESTIMONIALS MANAGEMENT ================= -->
+      <section id="tab-testimonials" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Kisah Kejayaan & Testimoni</h2>
+            <p class="text-xs text-slate-500">Urus bukti kelulusan yang dipaparkan kepada pemohon</p>
+          </div>
+          <button id="btn-add-testimonial-modal" class="px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
+            <span>Tambah Testimoni Baharu</span>
+          </button>
+        </div>
+
+        <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: SITE SETTINGS ================= -->
+      <section id="tab-settings" class="tab-content hidden space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900">Tetapan Laman Web & Nombor Perhubungan</h2>
+          <p class="text-xs text-slate-500">Pertukaran di sini akan mengemas kini semua 12 halaman web secara langsung</p>
+        </div>
+
+        <div id="settings-alert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
+
+        <form id="settings-form" class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Nombor WhatsApp Utama HQ (Format Antarabangsa):</label>
+              <input type="text" id="set-whatsapp" required placeholder="601171191170" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+              <span class="text-[10px] text-slate-500 mt-1 block">Contoh: 601171191170 (tanpa simbol + atau sengkang)</span>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Paparan Nombor Telefon (Teks):</label>
+              <input type="text" id="set-phone-display" required placeholder="011-7119 1170" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Emel Rasmi Syarikat:</label>
+              <input type="email" id="set-email" required placeholder="hello@jomconsult.com.my" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Waktu Operasi Pejabat:</label>
+              <input type="text" id="set-hours" required placeholder="Isnin - Jumaat: 10:00 AM - 6:00 PM" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Alamat Ibu Pejabat:</label>
+              <textarea id="set-address" rows="2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Kadar Faedah Minimum Dipaparkan:</label>
+              <input type="text" id="set-rate" placeholder="2.88%" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Had Pembiayaan Maksimum:</label>
+              <input type="text" id="set-max-loan" placeholder="RM250,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Teks Pengumuman Bar Atas (Announcement Bar):</label>
+              <input type="text" id="set-announcement" placeholder="Semakan Kelayakan Pinjaman 100% Percuma..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+            </div>
+
+          </div>
+
+          <div class="pt-4 border-t border-slate-200 flex justify-center">
+            <button type="submit" id="btn-save-settings" class="w-full sm:w-auto px-8 py-3 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+              <span>Simpan Semua Tetapan</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Admin Account & Security Section -->
+        <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Akaun & Keselamatan Admin</h2>
+            <p class="text-xs text-slate-500">Tukar nama pengguna (username) dan kata laluan log masuk panel</p>
+          </div>
+
+          <div id="profile-alert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
+
+          <form id="profile-form" class="space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Pengguna (Username):</label>
+                <input type="text" id="prof-username" required placeholder="admin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Paparan Penuh:</label>
+                <input type="text" id="prof-fullname" required placeholder="Admin ConsultPlus" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan Semasa (Current Password):</label>
+                <input type="password" id="prof-current-password" placeholder="Masukkan kata laluan semasa" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+                <span class="text-[10px] text-slate-400 mt-1 block">Wajib diisi jika anda ingin menukar kata laluan</span>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Kata Laluan Baharu (New Password):</label>
+                <input type="password" id="prof-new-password" placeholder="Biarkan kosong jika tidak mahu tukar" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+                <span class="text-[10px] text-slate-400 mt-1 block">Minimum 6 aksara</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex justify-center">
+              <button type="submit" id="btn-save-profile" class="w-full sm:w-auto px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                <span>Kemaskini Akaun & Kata Laluan</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: CAREER / RECRUITMENT APPLICATIONS ================= -->
+      <section id="tab-career" class="tab-content hidden space-y-6">
+        
+        <!-- Career Stats Summary -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs font-medium text-slate-500">Jumlah Permohonan</span>
+            <span id="stat-total-career" class="text-2xl font-extrabold text-slate-900 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-amber-700 font-bold">Permohonan Baru</span>
+            <span id="stat-baru-career" class="text-2xl font-extrabold text-amber-600 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-blue-700 font-bold">Sesi Temuduga</span>
+            <span id="stat-temuduga-career" class="text-2xl font-extrabold text-blue-600 font-mono block">0</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1">
+            <span class="text-xs text-[#0D276B] font-bold">Ejen Diluluskan</span>
+            <span id="stat-lulus-career" class="text-2xl font-extrabold text-yellow-600 font-mono block">0</span>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:flex md:items-center gap-2.5">
+            <select id="filter-career-status" class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-[#0D276B] focus:bg-white transition">
+              <option value="ALL">Semua Status</option>
+              <option value="BARU">BARU</option>
+              <option value="TEMUDUGA">TEMUDUGA</option>
+              <option value="LULUS">LULUS</option>
+              <option value="DITOLAK">DITOLAK</option>
+            </select>
+            <input type="text" id="search-career" placeholder="Cari nama, IC, telefon, rujukan..." class="w-full sm:w-auto bg-slate-50 border border-slate-200 text-xs rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#0D276B] focus:bg-white flex-1 md:w-64 transition">
+            
+            <div class="grid grid-cols-2 sm:flex items-center gap-2 sm:ml-auto">
+              <button id="btn-refresh-career" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 transition text-center">
+                Muat Semula
+              </button>
+              <button id="btn-export-career-csv" class="w-full sm:w-auto px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm text-center">
+                <span>Eksport CSV</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Cards View (Visible on Mobile Only) -->
+        <div id="career-cards-container" class="md:hidden space-y-3">
+          <div class="text-center py-8 text-slate-400 text-xs bg-white rounded-2xl border border-slate-200/80 p-6">
+            Sedang memuatkan senarai permohonan kerjaya...
+          </div>
+        </div>
+
+        <!-- Desktop Table Container (Visible on Desktop Only) -->
+        <div class="hidden md:block bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-700">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider text-[10px]">
+                <tr>
+                  <th class="py-3.5 px-4">No. Rujukan</th>
+                  <th class="py-3.5 px-4">Nama Pemohon & IC</th>
+                  <th class="py-3.5 px-4">WhatsApp & Emel</th>
+                  <th class="py-3.5 px-4">Lokasi & Perekrut</th>
+                  <th class="py-3.5 px-4">Bank Komisen</th>
+                  <th class="py-3.5 px-4">Status</th>
+                  <th class="py-3.5 px-4 text-right">Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="career-table-body" class="divide-y divide-slate-100 font-medium">
+                <tr>
+                  <td colspan="7" class="py-8 text-center text-slate-400">Sedang memuatkan senarai permohonan kerjaya...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= MODAL: VIEW FULL CAREER / KYC DETAILS ================= -->
+  <div id="modal-career-detail" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-3xl w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="font-bold text-base text-slate-900">Butiran Pendaftaran Perunding (KYC)</h3>
+          <p class="text-xs text-slate-500 font-mono" id="career-modal-ref">JC-REC-0000</p>
+        </div>
+        <button onclick="closeCareerModal()" class="text-slate-400 hover:text-slate-700 p-1 text-lg font-bold">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700" id="career-details-content">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- KYC Document Previews -->
+      <div class="space-y-3 pt-3 border-t border-slate-100">
+        <h4 class="font-bold text-xs text-slate-900">Dokumen Pengenalan Diri Dimuat Naik:</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="career-docs-preview">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Update Status & Notes -->
+      <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+        <h4 class="font-bold text-xs text-slate-900">Kemaskini Status & Catatan HR:</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Status Semasa:</label>
+            <select id="modal-career-status-select" class="w-full bg-white border border-slate-200 rounded-xl p-2 text-xs font-semibold">
+              <option value="BARU">BARU</option>
+              <option value="TEMUDUGA">TEMUDUGA</option>
+              <option value="LULUS">LULUS</option>
+              <option value="DITOLAK">DITOLAK</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Catatan HR / Temuduga:</label>
+            <input type="text" id="modal-career-notes-input" placeholder="Cth: Telah dihubungi, temuduga Isnin 10am" class="w-full bg-white border border-slate-200 rounded-xl p-2 text-xs">
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <a id="career-modal-wa-btn" href="#" target="_blank" class="px-4 py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs rounded-xl shadow transition inline-flex items-center gap-1.5">
+            <span>WhatsApp Pemohon</span>
+          </a>
+          <button type="button" id="btn-save-career-status" class="px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl shadow transition">
+            Simpan Kemaskini
+          </button>
+        </div>
+        <button type="button" onclick="closeCareerModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- ================= MODAL: VIEW FULL LEAD DETAILS ================= -->
+  <div id="modal-lead-details" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="font-bold text-base text-slate-900">Butiran Lengkap Permohonan Pemohon</h3>
+          <p class="text-xs text-slate-500 font-mono" id="lead-modal-id">Lead #1</p>
+        </div>
+        <button onclick="closeLeadModal()" class="text-slate-400 hover:text-slate-700 p-1 text-lg font-bold">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-700" id="lead-details-content">
+        <!-- Injected dynamically -->
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <a id="lead-modal-wa-btn" href="#" target="_blank" class="px-5 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl shadow transition inline-flex items-center gap-1.5">
+          <span>Hubungi di WhatsApp</span>
+        </a>
+        <button type="button" onclick="closeLeadModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD/EDIT AGENT ================= -->
+  <div id="modal-agent" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-lg w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 id="modal-agent-title" class="font-bold text-base text-slate-900">Tambah Ejen Baharu</h3>
+        <button onclick="closeAgentModal()" class="text-slate-400 hover:text-slate-700 p-1">✕</button>
+      </div>
+
+      <form id="form-agent" class="space-y-3 text-xs">
+        <input type="hidden" id="agent-id">
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Staff ID (Rasmi):</label>
+            <input type="text" id="agent-staff-id" required placeholder="JC-1099" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Status Pendaftaran:</label>
+            <select id="agent-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+              <option value="AKTIF & BERDAFTAR">AKTIF & BERDAFTAR</option>
+              <option value="DIGANTUNG">DIGANTUNG / TIDAK AKTIF</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nama Penuh Ejen:</label>
+          <input type="text" id="agent-name" required placeholder="Nama penuh staf" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Peranan / Jawatan:</label>
+          <input type="text" id="agent-role" required placeholder="Pakar Penstrukturan DSR" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Nombor WhatsApp:</label>
+            <input type="text" id="agent-phone" required placeholder="601171191170" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Kepakaran Utama:</label>
+            <input type="text" id="agent-specialty" placeholder="Penyatuan Hutang & CCRIS" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Cawangan Pejabat:</label>
+            <input type="text" id="agent-branch" placeholder="HQ Radia Bukit Jelutong" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Zon Liputan:</label>
+            <input type="text" id="agent-zone" placeholder="Selangor & KL" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
+          <button type="button" onclick="closeAgentModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl">Batal</button>
+          <button type="submit" class="px-5 py-2 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold rounded-xl shadow">Simpan Ejen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD/EDIT TESTIMONIAL ================= -->
+  <div id="modal-testimonial" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="max-w-lg w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 id="modal-testimonial-title" class="font-bold text-base text-slate-900">Tambah Testimoni Baharu</h3>
+        <button onclick="closeTestimonialModal()" class="text-slate-400 hover:text-slate-700 p-1 text-lg font-bold">✕</button>
+      </div>
+
+      <form id="form-testimonial" class="space-y-3 text-xs">
+        <input type="hidden" id="testimonial-id">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Nama Klien:</label>
+            <input type="text" id="testi-name" required placeholder="Cth: Encik Azman & Isteri" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Pekerjaan / Sektor:</label>
+            <input type="text" id="testi-profession" required placeholder="Cth: Eksekutif Swasta (MNC)" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Jumlah Lulus:</label>
+            <input type="text" id="testi-loan-approved" required placeholder="Cth: RM 145,000" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Anggaran Penjimatan Bulanan:</label>
+            <input type="text" id="testi-savings" placeholder="Cth: RM1,850 / bulan" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Kisah / Masalah Asal:</label>
+          <input type="text" id="testi-issue" placeholder="Cth: Penyatuan Hutang & DSR Tinggi" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Ulasan / Testimoni Penuh Klien:</label>
+          <textarea id="testi-story" rows="3" required placeholder="Alhamdulillah ConsultPlus bantu..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
+          <button type="button" onclick="closeTestimonialModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl">Batal</button>
+          <button type="submit" class="px-5 py-2 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold rounded-xl shadow">Simpan Testimoni</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/assets/js/admin.js"></script>
+</body>
+</html>

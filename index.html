@@ -542,6 +542,7 @@
               <li><a href="kalkulator.html" class="hover:text-brand-yellow">Kalkulator Pinjaman</a></li>
               <li><a href="panel-bank.html" class="hover:text-brand-yellow">Panel Bank</a></li>
               <li><a href="soalan-lazim.html" class="hover:text-brand-yellow">Soalan Lazim</a></li>
+              <li><a href="admin.html" class="hover:text-brand-navy font-semibold text-slate-400">Panel Admin CMS &rarr;</a></li>
             </ul>
           </div>
         </div>
@@ -556,7 +557,7 @@
 
   <!-- FLOATING WHATSAPP BUTTON -->
   <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
-    <a href="https://wa.me/60123456789?text=Hai%20ConsultPlus,%20saya%20ingin%20buat%20semakan%20kelayakan%20pinjaman%20percuma." target="_blank" rel="noopener noreferrer" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group relative">
+    <a id="floatingWhatsAppBtn" href="https://wa.me/60123456789?text=Hai%20ConsultPlus,%20saya%20ingin%20buat%20semakan%20kelayakan%20pinjaman%20percuma." target="_blank" rel="noopener noreferrer" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all group relative">
       <i data-lucide="message-circle" class="w-6 h-6 sm:w-7 sm:h-7 fill-brand-navyDeep"></i>
       <span class="absolute -top-1 -right-1 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-[8px] sm:text-[9px] text-white font-bold animate-pulse">!</span>
     </a>
@@ -569,16 +570,33 @@
     const menuIcon = document.getElementById('menuIcon');
     
     let isMenuOpen = false;
-    mobileMenuBtn.addEventListener('click', () => {
-      isMenuOpen = !isMenuOpen;
-      mobileMenu.classList.toggle('hidden');
-      if (isMenuOpen) {
-        menuIcon.setAttribute('data-lucide', 'x');
-      } else {
-        menuIcon.setAttribute('data-lucide', 'menu');
-      }
-      lucide.createIcons();
-    });
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        mobileMenu.classList.toggle('hidden');
+        if (isMenuOpen) {
+          menuIcon.setAttribute('data-lucide', 'x');
+        } else {
+          menuIcon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons();
+      });
+    }
+
+    // Dynamic config load
+    fetch('/api/public/config')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.config) {
+          const cfg = data.config;
+          const waNum = cfg.whatsapp_number || '60123456789';
+          const floatBtn = document.getElementById('floatingWhatsAppBtn');
+          if (floatBtn) {
+            floatBtn.href = `https://wa.me/${waNum}?text=Hai%20ConsultPlus,%20saya%20ingin%20buat%20semakan%20kelayakan%20pinjaman%20percuma.`;
+          }
+        }
+      })
+      .catch(() => {});
   </script>
 </body>
 </html>

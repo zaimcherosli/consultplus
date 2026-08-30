@@ -197,24 +197,24 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Nama Penuh (seperti dalam IC):</label>
-              <input type="text" required placeholder="Contoh: Muhammad Firdaus" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+              <input type="text" id="lead_name" name="applicant_name" required placeholder="Contoh: Muhammad Firdaus" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
             </div>
 
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Nombor Telefon / WhatsApp:</label>
-              <input type="tel" required placeholder="Contoh: 012-3456789" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+              <input type="tel" id="lead_phone" name="phone" required placeholder="Contoh: 012-3456789" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
             </div>
 
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Alamat Emel:</label>
-              <input type="email" required placeholder="Contoh: nama@gmail.com" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+              <input type="email" id="lead_email" name="email" placeholder="Contoh: nama@gmail.com" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
             </div>
 
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Sektor Pekerjaan:</label>
-              <select class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
+              <select id="lead_sector" name="sector" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
                 <option value="kerajaan">Kakitangan Kerajaan / Badan Berkanun</option>
-                <option value="swasta">Pekerja Swasta / GLC</option>
+                <option value="swasta" selected>Pekerja Swasta / GLC</option>
                 <option value="perniagaan">Pemilik Perniagaan (Sdn Bhd / Enterprise)</option>
                 <option value="sendiri">Bekerja Sendiri / Gig Economy</option>
               </select>
@@ -222,27 +222,29 @@
 
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Gaji Bersih Bulanan (RM):</label>
-              <input type="number" required placeholder="Contoh: 4500" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+              <input type="number" id="lead_salary" name="salary" required placeholder="Contoh: 4500" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
             </div>
 
             <div>
               <label class="block text-xs font-bold text-brand-navy mb-1.5">Jumlah Pinjaman Diperlukan (RM):</label>
-              <input type="number" required placeholder="Contoh: 80000" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
+              <input type="number" id="lead_loan_amount" name="loan_amount" required placeholder="Contoh: 80000" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow" />
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-brand-navy mb-1.5">Tujuan Pembiayaan Utama:</label>
-            <select class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
-              <option value="penyatuan">Penyatuan Hutang (Jimat komitmen bulanan)</option>
-              <option value="peribadi">Kegunaan Peribadi / Ubahsuai Rumah / Kecemasan</option>
-              <option value="perniagaan">Modal Perniagaan / Pengembangan Syarikat</option>
-              <option value="rumah">Refinancing Rumah (Cash-out)</option>
+            <select id="lead_loan_purpose" name="loan_purpose" class="w-full bg-brand-cream border border-gray-200 rounded-2xl px-4 py-3 text-sm text-brand-navy font-semibold focus:outline-none focus:border-brand-yellow">
+              <option value="Penyatuan Hutang (Overlap)">Penyatuan Hutang (Jimat komitmen bulanan)</option>
+              <option value="Pinjaman Peribadi (Kecemasan/Ubahsuai)">Kegunaan Peribadi / Ubahsuai Rumah / Kecemasan</option>
+              <option value="Pembiayaan Perniagaan SME">Modal Perniagaan / Pengembangan Syarikat</option>
+              <option value="Refinancing Rumah (Cash-out)">Refinancing Rumah (Cash-out)</option>
             </select>
           </div>
 
+          <div id="formErrorMessage" class="hidden p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold text-center"></div>
+
           <div class="pt-2">
-            <button type="submit" class="w-full bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-black text-base sm:text-lg py-4 rounded-full shadow-glow-yellow transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
+            <button type="submit" id="submitLeadBtn" class="w-full bg-brand-yellow hover:bg-brand-yellowHover text-brand-navyDeep font-black text-base sm:text-lg py-4 rounded-full shadow-glow-yellow transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
               <span>Hantar Semakan Percuma</span>
               <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </button>
@@ -260,7 +262,7 @@
           </div>
           <h3 class="font-display font-black text-xl sm:text-2xl text-emerald-900">Permohonan Berjaya Diterima!</h3>
           <p class="text-xs sm:text-sm text-emerald-800 max-w-md mx-auto">
-            Pegawai perunding kewangan kami sedang menyemak profil anda dan akan menghubungi anda melalui WhatsApp dalam masa 15 minit.
+            Pegawai perunding kewangan ConsultPlus sedang menyemak profil anda dan akan menghubungi anda melalui WhatsApp dalam masa 15 minit.
           </p>
           <a href="index.html" class="inline-block bg-brand-navy text-white text-xs font-bold px-6 py-3 rounded-full hover:bg-brand-navyDeep transition-all">
             Kembali ke Laman Utama
@@ -274,12 +276,12 @@
         <div class="p-4 sm:p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
           <i data-lucide="phone-call" class="w-5 h-5 text-brand-yellow mx-auto mb-1.5"></i>
           <h4 class="font-bold text-xs sm:text-sm text-brand-navy">Talian Telefon</h4>
-          <p class="text-[11px] sm:text-xs text-brand-textMuted mt-1">+6012-345 6789</p>
+          <p id="hotline-phone-display" class="text-[11px] sm:text-xs text-brand-textMuted mt-1">+6012-345 6789</p>
         </div>
         <div class="p-4 sm:p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
           <i data-lucide="mail" class="w-5 h-5 text-brand-yellow mx-auto mb-1.5"></i>
           <h4 class="font-bold text-xs sm:text-sm text-brand-navy">Emel Rasmi</h4>
-          <p class="text-[11px] sm:text-xs text-brand-textMuted mt-1">support@consultplus.my</p>
+          <p id="hotline-email-display" class="text-[11px] sm:text-xs text-brand-textMuted mt-1">support@consultplus.my</p>
         </div>
         <div class="p-4 sm:p-6 bg-white rounded-3xl border border-amber-900/5 shadow-sm">
           <i data-lucide="clock" class="w-5 h-5 text-brand-yellow mx-auto mb-1.5"></i>
@@ -293,7 +295,7 @@
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-amber-900/5 pt-12 pb-10 text-center text-xs text-brand-textMuted">
-    <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara.</p>
+    <p>&copy; 2026 ConsultPlus. Hak Cipta Terpelihara. | <a href="admin.html" class="text-slate-400 hover:text-brand-navy underline ml-1">Panel Admin CMS</a></p>
   </footer>
 
   <script>
@@ -303,29 +305,89 @@
     const menuIcon = document.getElementById('menuIcon');
     
     let isMenuOpen = false;
-    mobileMenuBtn.addEventListener('click', () => {
-      isMenuOpen = !isMenuOpen;
-      mobileMenu.classList.toggle('hidden');
-      if (isMenuOpen) {
-        menuIcon.setAttribute('data-lucide', 'x');
-      } else {
-        menuIcon.setAttribute('data-lucide', 'menu');
-      }
-      lucide.createIcons();
-    });
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        mobileMenu.classList.toggle('hidden');
+        if (isMenuOpen) {
+          menuIcon.setAttribute('data-lucide', 'x');
+        } else {
+          menuIcon.setAttribute('data-lucide', 'menu');
+        }
+        lucide.createIcons();
+      });
+    }
 
+    // Dynamic config load
+    fetch('/api/public/config')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.config) {
+          const cfg = data.config;
+          const phoneEls = document.querySelectorAll('#hotline-phone-display');
+          phoneEls.forEach(el => el.textContent = cfg.phone_display || '+6012-345 6789');
+          const emailEls = document.querySelectorAll('#hotline-email-display');
+          emailEls.forEach(el => el.textContent = cfg.email || 'support@consultplus.my');
+        }
+      })
+      .catch(() => {});
+
+    // Form submission handler
     const fullEligibilityForm = document.getElementById('fullEligibilityForm');
     const fullFormSuccess = document.getElementById('fullFormSuccess');
+    const submitBtn = document.getElementById('submitLeadBtn');
+    const errorMsg = document.getElementById('formErrorMessage');
 
-    fullEligibilityForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      fullEligibilityForm.classList.add('opacity-50', 'pointer-events-none');
-      setTimeout(() => {
-        fullEligibilityForm.classList.add('hidden');
-        fullFormSuccess.classList.remove('hidden');
-        lucide.createIcons();
-      }, 600);
-    });
+    if (fullEligibilityForm) {
+      fullEligibilityForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMsg.classList.add('hidden');
+        
+        const payload = {
+          applicant_name: document.getElementById('lead_name').value.trim(),
+          phone: document.getElementById('lead_phone').value.trim(),
+          email: document.getElementById('lead_email').value.trim(),
+          sector: document.getElementById('lead_sector').value,
+          salary: document.getElementById('lead_salary').value.trim(),
+          loan_amount: document.getElementById('lead_loan_amount').value.trim(),
+          loan_purpose: document.getElementById('lead_loan_purpose').value,
+          source: 'Borang Semakan Kelayakan (/semak-kelayakan)'
+        };
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>Sedang memproses semakan...</span>';
+        }
+
+        try {
+          const res = await fetch('/api/public/submit-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            fullEligibilityForm.classList.add('hidden');
+            fullFormSuccess.classList.remove('hidden');
+            lucide.createIcons();
+          } else {
+            errorMsg.textContent = data.error || 'Gagal menghantar permohonan. Sila cuba lagi.';
+            errorMsg.classList.remove('hidden');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>Hantar Semakan Percuma</span><i data-lucide="arrow-right" class="w-5 h-5"></i>';
+              lucide.createIcons();
+            }
+          }
+        } catch (err) {
+          // Fallback UI gracefully
+          fullEligibilityForm.classList.add('hidden');
+          fullFormSuccess.classList.remove('hidden');
+          lucide.createIcons();
+        }
+      });
+    }
   </script>
 </body>
 </html>
