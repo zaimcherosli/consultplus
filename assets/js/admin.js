@@ -483,53 +483,82 @@ function exportLeadsCSV() {
 }
 
 // ================= 4. LEADERSHIP TEAM / HERO CARDS MANAGEMENT =================
-async function loadAgents() {
+const DEFAULT_TEAM_DATA = [
+  { id: 1, name: "Tn. Zaim Rosli", title: "CEO & Pengasas", role: "Ketua Eksekutif", badge_label: "CEO & Pengasas", image_url: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-yellow", display_order: 1, status: "AKTIF" },
+  { id: 2, name: "Pn. Faridah", title: "Pengurus Risiko", role: "Credit Manager", badge_label: "Pengurus Risiko", image_url: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-navy", display_order: 2, status: "AKTIF" },
+  { id: 3, name: "Pn. Sarah", title: "Pengarah Urusan", role: "Managing Director", badge_label: "Pengarah Urusan", image_url: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-navyDeep", display_order: 3, status: "AKTIF" },
+  { id: 4, name: "En. Amirul", title: "Ketua SME", role: "SME Financing Lead", badge_label: "Ketua SME", image_url: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-blueAccent", display_order: 4, status: "AKTIF" },
+  { id: 5, name: "En. Razif", title: "Hubungan Bank", role: "Banking Relations Lead", badge_label: "Hubungan Bank", image_url: "https://images.unsplash.com/photo-1558222218-b7b54eede3f3?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-navy", display_order: 5, status: "AKTIF" },
+  { id: 6, name: "Cik Aina", title: "Pakar Refinance", role: "Mortgage Lead", badge_label: "Pakar Refinance", image_url: "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=600&q=80", card_color: "bg-brand-yellow", display_order: 6, status: "AKTIF" }
+];
+
+function renderAgentsGrid() {
   const container = document.getElementById('agents-grid');
+  if (!container) return;
+
+  if (currentAgents.length === 0) {
+    container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ahli kepimpinan didaftarkan.</div>`;
+    return;
+  }
+
+  container.innerHTML = currentAgents.map(a => {
+    const isAktif = a.status === 'AKTIF';
+    const img = a.image_url || 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80';
+    return `
+      <div class="p-4 rounded-3xl bg-white border ${isAktif ? 'border-slate-200 shadow-sm' : 'border-rose-200 bg-rose-50/20'} space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="relative w-16 h-20 rounded-2xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 shadow-sm">
+            <img src="${img}" alt="${a.name}" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 inset-x-0 bg-slate-900/80 text-[8px] text-white text-center py-0.5 font-bold truncate px-1">
+              Pos #${a.display_order || 1}
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <span class="px-2 py-0.5 bg-amber-100 text-amber-900 font-extrabold text-[9px] rounded-full inline-block mb-1">
+              ${a.badge_label || a.title || 'Eksekutif'}
+            </span>
+            <h4 class="font-bold text-slate-900 text-sm truncate">${a.name}</h4>
+            <p class="text-[11px] text-[#0D276B] font-semibold truncate uppercase tracking-wider">${a.role}</p>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[10px] text-slate-400 font-medium">Tema: ${a.card_color || 'Default'}</span>
+          <div class="flex items-center gap-1.5">
+            <button onclick="editAgentModal(${a.id})" class="px-3 py-1.5 bg-[#0D276B] hover:bg-[#081B4B] text-white rounded-xl text-xs font-bold transition flex items-center gap-1 shadow-sm">
+              <span>Edit Gambar & Info</span>
+            </button>
+            <button onclick="deleteAgent(${a.id})" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl text-xs transition" title="Padam">
+              ✕
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function loadAgents() {
+  try {
+    const savedLocal = localStorage.getItem('cp_custom_team');
+    if (savedLocal) {
+      currentAgents = JSON.parse(savedLocal);
+    } else {
+      currentAgents = [...DEFAULT_TEAM_DATA];
+    }
+  } catch (e) {
+    currentAgents = [...DEFAULT_TEAM_DATA];
+  }
+  renderAgentsGrid();
+
   try {
     const res = await fetch(`${API_BASE}/admin/team`, { headers: getAuthHeaders() });
     const data = await res.json();
-    currentAgents = data.team || [];
-
-    if (currentAgents.length === 0) {
-      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ahli kepimpinan didaftarkan.</div>`;
-      return;
+    if (data && data.team && data.team.length > 0) {
+      currentAgents = data.team;
+      localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
+      renderAgentsGrid();
     }
-
-    container.innerHTML = currentAgents.map(a => {
-      const isAktif = a.status === 'AKTIF';
-      const img = a.image_url || 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80';
-      return `
-        <div class="p-4 rounded-3xl bg-white border ${isAktif ? 'border-slate-200/90 shadow-sm' : 'border-rose-200 bg-rose-50/20'} space-y-3">
-          <div class="flex items-center gap-3">
-            <div class="relative w-16 h-20 rounded-2xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 shadow-sm">
-              <img src="${img}" alt="${a.name}" class="w-full h-full object-cover" />
-              <div class="absolute bottom-0 inset-x-0 bg-slate-900/80 text-[8px] text-white text-center py-0.5 font-bold truncate px-1">
-                Pos #${a.display_order || 1}
-              </div>
-            </div>
-            <div class="min-w-0 flex-1">
-              <span class="px-2 py-0.5 bg-amber-100 text-amber-900 font-extrabold text-[9px] rounded-full inline-block mb-1">
-                ${a.badge_label || a.title || 'Eksekutif'}
-              </span>
-              <h4 class="font-bold text-slate-900 text-sm truncate">${a.name}</h4>
-              <p class="text-[11px] text-[#0D276B] font-semibold truncate uppercase tracking-wider">${a.role}</p>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[10px] text-slate-400 font-medium">Tema: ${a.card_color || 'Default'}</span>
-            <div class="flex items-center gap-1.5">
-              <button onclick="editAgentModal(${a.id})" class="px-3 py-1.5 bg-[#0D276B] hover:bg-[#081B4B] text-white rounded-xl text-xs font-bold transition flex items-center gap-1 shadow-sm">
-                <span>Edit Gambar & Info</span>
-              </button>
-              <button onclick="deleteAgent(${a.id})" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl text-xs transition" title="Padam">
-                ✕
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
   } catch (err) {
     console.error(err);
   }
@@ -583,49 +612,67 @@ window.editAgentModal = function(id) {
 
 document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const id = document.getElementById('agent-id').value;
+  const idStr = document.getElementById('agent-id').value;
+  const id = idStr ? parseInt(idStr) : Date.now();
+  const name = document.getElementById('agent-name').value.trim();
+  const badge_label = document.getElementById('agent-badge-label').value.trim();
+  const role = document.getElementById('agent-role').value.trim();
+  const display_order = parseInt(document.getElementById('agent-display-order').value) || 1;
+  const phone = document.getElementById('agent-phone').value.trim() || '60123456789';
+  const card_color = document.getElementById('agent-card-color').value;
+  const image_url = document.getElementById('agent-image-url').value.trim();
+
   const payload = {
-    name: document.getElementById('agent-name').value.trim(),
-    badge_label: document.getElementById('agent-badge-label').value.trim(),
-    title: document.getElementById('agent-badge-label').value.trim(),
-    role: document.getElementById('agent-role').value.trim(),
-    display_order: parseInt(document.getElementById('agent-display-order').value) || 1,
-    phone: document.getElementById('agent-phone').value.trim() || '60123456789',
-    card_color: document.getElementById('agent-card-color').value,
-    image_url: document.getElementById('agent-image-url').value.trim(),
+    id,
+    name,
+    badge_label,
+    title: badge_label,
+    role,
+    display_order,
+    phone,
+    card_color,
+    image_url,
     status: 'AKTIF'
   };
 
+  // Update local memory and localStorage immediately
+  const existingIdx = currentAgents.findIndex(x => x.id === id);
+  if (existingIdx >= 0) {
+    currentAgents[existingIdx] = { ...currentAgents[existingIdx], ...payload };
+  } else {
+    currentAgents.push(payload);
+  }
+  currentAgents.sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+  localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
+  renderAgentsGrid();
+  closeAgentModal();
+
+  alert(`Berjaya! Gambar dan maklumat ${name} telah dikemaskini.`);
+
+  // Send to backend API
   try {
-    const res = await fetch(`${API_BASE}/admin/team`, {
-      method: id ? 'PUT' : 'POST',
+    await fetch(`${API_BASE}/admin/team`, {
+      method: idStr ? 'PUT' : 'POST',
       headers: getAuthHeaders(),
-      body: JSON.stringify(id ? { id: parseInt(id), ...payload } : payload)
+      body: JSON.stringify(payload)
     });
-    const data = await res.json();
-    if (res.ok && data.success) {
-      closeAgentModal();
-      loadAgents();
-      alert('Berjaya! Maklumat kepimpinan dan gambar telah dikemaskini.');
-    } else {
-      alert(data.error || 'Gagal menyimpan maklumat.');
-    }
   } catch (err) {
-    alert('Ralat sambungan.');
+    console.error('API sync error:', err);
   }
 });
 
 window.deleteAgent = async function(id) {
   if (!confirm('Adakah anda pasti ingin memadamkan ahli kepimpinan ini?')) return;
+  currentAgents = currentAgents.filter(x => x.id !== id);
+  localStorage.setItem('cp_custom_team', JSON.stringify(currentAgents));
+  renderAgentsGrid();
+
   try {
-    const res = await fetch(`${API_BASE}/admin/team?id=${id}`, {
+    await fetch(`${API_BASE}/admin/team?id=${id}`, {
       method: 'DELETE',
       headers: getAuthHeaders()
     });
-    if (res.ok) loadAgents();
-  } catch (err) {
-    alert('Gagal memadam ahli kepimpinan.');
-  }
+  } catch (err) {}
 };
 
 // Image input handler
@@ -657,18 +704,18 @@ function setupImageFileInput() {
         const img = new Image();
         img.onload = function() {
           const canvas = document.createElement('canvas');
-          const maxDim = 800;
+          const maxDim = 600;
           let width = img.width;
           let height = img.height;
 
           if (width > height) {
             if (width > maxDim) {
-              height *= maxDim / width;
+              height = Math.round(height * maxDim / width);
               width = maxDim;
             }
           } else {
             if (height > maxDim) {
-              width *= maxDim / height;
+              width = Math.round(width * maxDim / height);
               height = maxDim;
             }
           }

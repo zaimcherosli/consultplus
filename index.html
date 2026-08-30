@@ -598,23 +598,36 @@
       })
       .catch(() => {});
 
-    // Dynamic Hero Leadership Cards load
+    function renderHeroTeam(team) {
+      if (!team || !team.length) return;
+      team.forEach((member, index) => {
+        const cardIdx = index + 1;
+        const imgEl = document.getElementById(`hero-card-${cardIdx}-img`);
+        const badgeEl = document.getElementById(`hero-card-${cardIdx}-badge`);
+        const nameEl = document.getElementById(`hero-card-${cardIdx}-name`);
+        const roleEl = document.getElementById(`hero-card-${cardIdx}-role`);
+
+        if (imgEl && member.image_url) imgEl.src = member.image_url;
+        if (badgeEl && (member.badge_label || member.title)) badgeEl.textContent = member.badge_label || member.title;
+        if (nameEl && member.name) nameEl.textContent = member.name;
+        if (roleEl && member.role) roleEl.textContent = member.role;
+      });
+    }
+
+    // 1. Instant load from local storage
+    try {
+      const localTeam = JSON.parse(localStorage.getItem('cp_custom_team') || 'null');
+      if (localTeam && localTeam.length) {
+        renderHeroTeam(localTeam);
+      }
+    } catch (e) {}
+
+    // 2. Fetch from public API
     fetch('/api/public/team')
       .then(res => res.json())
       .then(data => {
         if (data && data.team && data.team.length > 0) {
-          data.team.forEach((member, index) => {
-            const cardIdx = index + 1;
-            const imgEl = document.getElementById(`hero-card-${cardIdx}-img`);
-            const badgeEl = document.getElementById(`hero-card-${cardIdx}-badge`);
-            const nameEl = document.getElementById(`hero-card-${cardIdx}-name`);
-            const roleEl = document.getElementById(`hero-card-${cardIdx}-role`);
-
-            if (imgEl && member.image_url) imgEl.src = member.image_url;
-            if (badgeEl && (member.badge_label || member.title)) badgeEl.textContent = member.badge_label || member.title;
-            if (nameEl && member.name) nameEl.textContent = member.name;
-            if (roleEl && member.role) roleEl.textContent = member.role;
-          });
+          renderHeroTeam(data.team);
         }
       })
       .catch(() => {});
