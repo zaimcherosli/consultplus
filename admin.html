@@ -115,7 +115,7 @@
       <button class="nav-tab w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center justify-between" data-tab="tab-agents">
         <span class="flex items-center gap-2.5">
           <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <span>Pengurusan Ejen Sah</span>
+          <span>Barisan Kepimpinan (Hero Cards)</span>
         </span>
         <span id="badge-agents-count-mobile" class="px-2 py-0.5 rounded-full bg-slate-200 text-[10px] font-mono text-slate-700">0</span>
       </button>
@@ -159,7 +159,7 @@
           <span id="badge-career-count" class="px-1.5 py-0.5 rounded-full bg-amber-500 text-[10px] font-mono text-white">0</span>
         </button>
         <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-agents">
-          <span>Pengurusan Ejen Sah</span>
+          <span>Barisan Kepimpinan (Hero Cards)</span>
           <span id="badge-agents-count" class="px-1.5 py-0.5 rounded-full bg-slate-200 text-[10px] font-mono text-slate-700">0</span>
         </button>
         <button class="nav-tab px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-2 whitespace-nowrap" data-tab="tab-testimonials">
@@ -253,19 +253,19 @@
 
       </section>
 
-      <!-- ================= TAB 2: AGENTS MANAGEMENT ================= -->
+      <!-- ================= TAB 2: LEADERSHIP TEAM MANAGEMENT ================= -->
       <section id="tab-agents" class="tab-content hidden space-y-6">
         <div class="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h2 class="text-xl font-bold text-slate-900">Direktori Ejen & Perunding Sah</h2>
-            <p class="text-xs text-slate-500">Kawal status ejen untuk portal anti-scam (verify.html)</p>
+            <h2 class="text-xl font-bold text-slate-900">Barisan Kepimpinan & Staf Eksekutif (Hero Cards)</h2>
+            <p class="text-xs text-slate-500">Urus gambar, nama, gelaran badge, dan susunan 6 kad eksekutif di bahagian utama laman web ConsultPlus.</p>
           </div>
           <button id="btn-add-agent-modal" class="px-4 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold text-xs rounded-xl transition flex items-center gap-2 shadow-sm">
-            <span>Tambah Ejen Baharu</span>
+            <span>+ Tambah / Edit Ahli Pasukan</span>
           </button>
         </div>
 
-        <div id="agents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div id="agents-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <!-- Loaded dynamically -->
         </div>
       </section>
@@ -555,66 +555,87 @@
     </div>
   </div>
 
-  <!-- ================= MODAL: ADD/EDIT AGENT ================= -->
+  <!-- ================= MODAL: ADD/EDIT LEADERSHIP / AGENT ================= -->
   <div id="modal-agent" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="max-w-lg w-full bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <h3 id="modal-agent-title" class="font-bold text-base text-slate-900">Tambah Ejen Baharu</h3>
-        <button onclick="closeAgentModal()" class="text-slate-400 hover:text-slate-700 p-1">✕</button>
+        <div>
+          <h3 id="modal-agent-title" class="font-bold text-base text-slate-900">Kemaskini Ahli Kepimpinan</h3>
+          <p class="text-[11px] text-slate-500">Tukar gambar, nama, gelaran badge, dan jawatan staf</p>
+        </div>
+        <button onclick="closeAgentModal()" class="text-slate-400 hover:text-slate-700 p-1 font-bold text-base">✕</button>
       </div>
 
-      <form id="form-agent" class="space-y-3 text-xs">
+      <form id="form-agent" class="space-y-4 text-xs">
         <input type="hidden" id="agent-id">
+
+        <!-- Image Upload & Preview Section -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+          <label class="block font-bold text-slate-700">Gambar Profil Staf (Hero Card):</label>
+          
+          <div class="flex items-center gap-4">
+            <div class="relative w-20 h-24 rounded-2xl bg-slate-200 border-2 border-dashed border-slate-300 overflow-hidden shrink-0 flex items-center justify-center shadow-inner">
+              <img id="agent-image-preview" src="" class="w-full h-full object-cover hidden" />
+              <div id="agent-image-placeholder" class="text-center p-1 text-[10px] text-slate-400 font-bold">
+                <i data-lucide="image" class="w-6 h-6 mx-auto mb-1 opacity-50"></i>
+                <span>Tiada Gambar</span>
+              </div>
+            </div>
+
+            <div class="flex-1 space-y-2">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-1">Pilih fail dari komputer/telefon:</label>
+                <input type="file" id="agent-image-file" accept="image/*" class="block w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-[11px] file:font-bold file:bg-[#0D276B] file:text-white hover:file:bg-[#081B4B] cursor-pointer" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-0.5">Atau masukkan pautan URL:</label>
+                <input type="url" id="agent-image-url" placeholder="https://images.unsplash.com/..." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-[#0D276B]" />
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Staff ID (Rasmi):</label>
-            <input type="text" id="agent-staff-id" required placeholder="JC-1099" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+            <label class="block font-bold text-slate-700 mb-1">Nama Penuh:</label>
+            <input type="text" id="agent-name" required placeholder="Tn. Zaim Rosli" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold focus:outline-none focus:border-[#0D276B]">
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Status Pendaftaran:</label>
-            <select id="agent-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
-              <option value="AKTIF & BERDAFTAR">AKTIF & BERDAFTAR</option>
-              <option value="DIGANTUNG">DIGANTUNG / TIDAK AKTIF</option>
-            </select>
+            <label class="block font-bold text-slate-700 mb-1">Gelaran / Badge Label:</label>
+            <input type="text" id="agent-badge-label" required placeholder="CEO & Pengasas" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold focus:outline-none focus:border-[#0D276B]">
           </div>
         </div>
 
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Nama Penuh Ejen:</label>
-          <input type="text" id="agent-name" required placeholder="Nama penuh staf" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
-        </div>
-
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Peranan / Jawatan:</label>
-          <input type="text" id="agent-role" required placeholder="Pakar Penstrukturan DSR" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Jawatan Rasmi (Role):</label>
+            <input type="text" id="agent-role" required placeholder="Ketua Eksekutif" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold focus:outline-none focus:border-[#0D276B]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Susunan (1-6 di Homepage):</label>
+            <input type="number" id="agent-display-order" min="1" max="20" value="1" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold focus:outline-none focus:border-[#0D276B]">
+          </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Nombor WhatsApp:</label>
-            <input type="text" id="agent-phone" required placeholder="601171191170" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+            <input type="text" id="agent-phone" placeholder="60123456789" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Kepakaran Utama:</label>
-            <input type="text" id="agent-specialty" placeholder="Penyatuan Hutang & CCRIS" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Cawangan Pejabat:</label>
-            <input type="text" id="agent-branch" placeholder="HQ Radia Bukit Jelutong" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
-          </div>
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Zon Liputan:</label>
-            <input type="text" id="agent-zone" placeholder="Selangor & KL" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 focus:outline-none focus:border-[#0D276B]">
+            <label class="block font-bold text-slate-700 mb-1">Warna Kad Hero:</label>
+            <select id="agent-card-color" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-slate-900 font-bold focus:outline-none focus:border-[#0D276B]">
+              <option value="bg-brand-yellow">Kuning Emas (Gold Yellow)</option>
+              <option value="bg-brand-navy">Navy Blue (Biru Gelap)</option>
+              <option value="bg-brand-navyDeep">Deep Navy (Biru Pekat)</option>
+              <option value="bg-brand-blueAccent">Royal Blue (Biru Terang)</option>
+            </select>
           </div>
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
           <button type="button" onclick="closeAgentModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl">Batal</button>
-          <button type="submit" class="px-5 py-2 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold rounded-xl shadow">Simpan Ejen</button>
+          <button type="submit" class="px-6 py-2.5 bg-[#0D276B] hover:bg-[#081B4B] text-white font-bold rounded-xl shadow">Simpan & Kemaskini Laman Web</button>
         </div>
       </form>
     </div>

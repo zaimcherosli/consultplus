@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLeadsListeners();
   initCareerListeners();
   initSettingsListeners();
+  setupImageFileInput();
 });
 
 // ================= 1. AUTHENTICATION =================
@@ -497,49 +498,49 @@ async function loadAgents() {
     if (agentsBadgeMobile) agentsBadgeMobile.textContent = currentAgents.length;
 
     if (currentAgents.length === 0) {
-      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ejen didaftarkan.</div>`;
+// ================= 4. LEADERSHIP TEAM / HERO CARDS MANAGEMENT =================
+async function loadAgents() {
+  const container = document.getElementById('agents-grid');
+  try {
+    const res = await fetch(`${API_BASE}/admin/team`, { headers: getAuthHeaders() });
+    const data = await res.json();
+    currentAgents = data.team || [];
+
+    if (currentAgents.length === 0) {
+      container.innerHTML = `<div class="col-span-3 text-center py-10 text-slate-400 font-medium">Tiada ahli kepimpinan didaftarkan.</div>`;
       return;
     }
 
     container.innerHTML = currentAgents.map(a => {
-      const isAktif = a.status.includes('AKTIF');
+      const isAktif = a.status === 'AKTIF';
+      const img = a.image_url || 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80';
       return `
-        <div class="p-5 rounded-2xl bg-white border ${isAktif ? 'border-slate-200/90' : 'border-rose-200 bg-rose-50/30'} shadow-sm space-y-4">
-          <div class="flex items-start justify-between">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl ${a.avatar_bg || 'bg-emerald-700'} flex items-center justify-center font-extrabold text-white text-xs shadow-sm">
-                ${a.initials || 'JC'}
-              </div>
-              <div>
-                <span class="font-bold text-slate-900 text-xs block">${a.name}</span>
-                <span class="text-[10px] font-mono text-emerald-700 font-bold">${a.staff_id}</span>
+        <div class="p-4 rounded-3xl bg-white border ${isAktif ? 'border-slate-200/90 shadow-sm' : 'border-rose-200 bg-rose-50/20'} space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="relative w-16 h-20 rounded-2xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 shadow-sm">
+              <img src="${img}" alt="${a.name}" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 inset-x-0 bg-slate-900/80 text-[8px] text-white text-center py-0.5 font-bold truncate px-1">
+                Pos #${a.display_order || 1}
               </div>
             </div>
-            <span class="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${isAktif ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'}">
-              ${isAktif ? 'AKTIF' : 'DIGANTUNG'}
-            </span>
-          </div>
-
-          <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100">
-            <div class="text-[11px]">Jawatan: <span class="text-slate-900 font-medium">${a.role}</span></div>
-            <div class="text-[11px] flex items-center gap-1.5">
-              <span>WhatsApp:</span>
-              <a href="https://wa.me/${a.phone}" target="_blank" class="text-emerald-700 font-semibold hover:underline inline-flex items-center gap-1">
-                ${WHATSAPP_SVG}
-                <span>${a.phone_display || a.phone}</span>
-              </a>
+            <div class="min-w-0 flex-1">
+              <span class="px-2 py-0.5 bg-amber-100 text-amber-900 font-extrabold text-[9px] rounded-full inline-block mb-1">
+                ${a.badge_label || a.title || 'Eksekutif'}
+              </span>
+              <h4 class="font-bold text-slate-900 text-sm truncate">${a.name}</h4>
+              <p class="text-[11px] text-[#0D276B] font-semibold truncate uppercase tracking-wider">${a.role}</p>
             </div>
-            <div class="text-[11px]">Zon: <span class="text-slate-900 font-medium">${a.zone}</span></div>
-            <div class="text-[10px] text-slate-500">Semakan Anti-Scam: <span class="font-mono text-slate-900 font-bold">${a.verification_count || 0} kali</span></div>
           </div>
 
-          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-            <button onclick="toggleAgentStatus(${a.id}, '${isAktif ? 'DIGANTUNG' : 'AKTIF & BERDAFTAR'}')" class="text-[11px] font-bold ${isAktif ? 'text-amber-700 hover:underline' : 'text-emerald-700 hover:underline'}">
-              ${isAktif ? 'Gantung Status' : 'Aktifkan Semula'}
-            </button>
-            <div class="flex items-center gap-2">
-              <button onclick="editAgentModal(${a.id})" class="px-3 py-1 text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-xs font-semibold transition">Edit</button>
-              <button onclick="deleteAgent(${a.id})" class="px-3 py-1 text-slate-500 hover:text-rose-600 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-lg text-xs font-semibold transition">Padam</button>
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[10px] text-slate-400 font-medium">Tema: ${a.card_color || 'Default'}</span>
+            <div class="flex items-center gap-1.5">
+              <button onclick="editAgentModal(${a.id})" class="px-3 py-1.5 bg-[#0D276B] hover:bg-[#081B4B] text-white rounded-xl text-xs font-bold transition flex items-center gap-1 shadow-sm">
+                <span>Edit Gambar & Info</span>
+              </button>
+              <button onclick="deleteAgent(${a.id})" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl text-xs transition" title="Padam">
+                ✕
+              </button>
             </div>
           </div>
         </div>
@@ -550,11 +551,16 @@ async function loadAgents() {
   }
 }
 
-// Modal open/close for Agent
+// Modal open/close for Agent / Leadership Member
 document.getElementById('btn-add-agent-modal')?.addEventListener('click', () => {
   document.getElementById('form-agent').reset();
   document.getElementById('agent-id').value = '';
-  document.getElementById('modal-agent-title').textContent = 'Tambah Ejen Baharu';
+  document.getElementById('agent-image-url').value = '';
+  const previewImg = document.getElementById('agent-image-preview');
+  const placeholder = document.getElementById('agent-image-placeholder');
+  if (previewImg) previewImg.classList.add('hidden');
+  if (placeholder) placeholder.classList.remove('hidden');
+  document.getElementById('modal-agent-title').textContent = 'Tambah Ahli Kepimpinan';
   document.getElementById('modal-agent').classList.remove('hidden');
 });
 
@@ -566,15 +572,28 @@ window.editAgentModal = function(id) {
   const a = currentAgents.find(x => x.id === id);
   if (!a) return;
   document.getElementById('agent-id').value = a.id;
-  document.getElementById('agent-staff-id').value = a.staff_id;
   document.getElementById('agent-name').value = a.name;
+  document.getElementById('agent-badge-label').value = a.badge_label || a.title || '';
   document.getElementById('agent-role').value = a.role;
-  document.getElementById('agent-phone').value = a.phone;
-  document.getElementById('agent-status').value = a.status;
-  document.getElementById('agent-specialty').value = a.specialty || '';
-  document.getElementById('agent-branch').value = a.branch || '';
-  document.getElementById('agent-zone').value = a.zone || '';
-  document.getElementById('modal-agent-title').textContent = 'Kemaskini Ejen';
+  document.getElementById('agent-display-order').value = a.display_order || 1;
+  document.getElementById('agent-phone').value = a.phone || '';
+  document.getElementById('agent-card-color').value = a.card_color || 'bg-brand-yellow';
+  
+  const imgUrl = a.image_url || '';
+  document.getElementById('agent-image-url').value = imgUrl;
+  
+  const previewImg = document.getElementById('agent-image-preview');
+  const placeholder = document.getElementById('agent-image-placeholder');
+  if (imgUrl && previewImg) {
+    previewImg.src = imgUrl;
+    previewImg.classList.remove('hidden');
+    if (placeholder) placeholder.classList.add('hidden');
+  } else {
+    if (previewImg) previewImg.classList.add('hidden');
+    if (placeholder) placeholder.classList.remove('hidden');
+  }
+
+  document.getElementById('modal-agent-title').textContent = `Kemaskini ${a.name}`;
   document.getElementById('modal-agent').classList.remove('hidden');
 };
 
@@ -582,18 +601,19 @@ document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const id = document.getElementById('agent-id').value;
   const payload = {
-    staff_id: document.getElementById('agent-staff-id').value,
-    name: document.getElementById('agent-name').value,
-    role: document.getElementById('agent-role').value,
-    phone: document.getElementById('agent-phone').value,
-    status: document.getElementById('agent-status').value,
-    specialty: document.getElementById('agent-specialty').value,
-    branch: document.getElementById('agent-branch').value,
-    zone: document.getElementById('agent-zone').value
+    name: document.getElementById('agent-name').value.trim(),
+    badge_label: document.getElementById('agent-badge-label').value.trim(),
+    title: document.getElementById('agent-badge-label').value.trim(),
+    role: document.getElementById('agent-role').value.trim(),
+    display_order: parseInt(document.getElementById('agent-display-order').value) || 1,
+    phone: document.getElementById('agent-phone').value.trim() || '60123456789',
+    card_color: document.getElementById('agent-card-color').value,
+    image_url: document.getElementById('agent-image-url').value.trim(),
+    status: 'AKTIF'
   };
 
   try {
-    const res = await fetch(`${API_BASE}/admin/agents`, {
+    const res = await fetch(`${API_BASE}/admin/team`, {
       method: id ? 'PUT' : 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(id ? { id: parseInt(id), ...payload } : payload)
@@ -602,39 +622,91 @@ document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
     if (res.ok && data.success) {
       closeAgentModal();
       loadAgents();
+      alert('Berjaya! Maklumat kepimpinan dan gambar telah dikemaskini.');
     } else {
-      alert(data.error || 'Gagal menyimpan maklumat ejen.');
+      alert(data.error || 'Gagal menyimpan maklumat.');
     }
   } catch (err) {
     alert('Ralat sambungan.');
   }
 });
 
-window.toggleAgentStatus = async function(id, newStatus) {
-  try {
-    const res = await fetch(`${API_BASE}/admin/agents`, {
-      method: 'PUT',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ id, status: newStatus })
-    });
-    if (res.ok) loadAgents();
-  } catch (err) {
-    alert('Gagal menukar status ejen.');
-  }
-};
-
 window.deleteAgent = async function(id) {
-  if (!confirm('Adakah anda pasti ingin memadamkan ejen ini?')) return;
+  if (!confirm('Adakah anda pasti ingin memadamkan ahli kepimpinan ini?')) return;
   try {
-    const res = await fetch(`${API_BASE}/admin/agents?id=${id}`, {
+    const res = await fetch(`${API_BASE}/admin/team?id=${id}`, {
       method: 'DELETE',
       headers: getAuthHeaders()
     });
     if (res.ok) loadAgents();
   } catch (err) {
-    alert('Gagal memadam ejen.');
+    alert('Gagal memadam ahli kepimpinan.');
   }
 };
+
+// Image input handler
+function setupImageFileInput() {
+  const fileInput = document.getElementById('agent-image-file');
+  const urlInput = document.getElementById('agent-image-url');
+  const previewImg = document.getElementById('agent-image-preview');
+  const placeholder = document.getElementById('agent-image-placeholder');
+
+  if (urlInput) {
+    urlInput.addEventListener('input', () => {
+      if (urlInput.value.trim()) {
+        if (previewImg) {
+          previewImg.src = urlInput.value.trim();
+          previewImg.classList.remove('hidden');
+        }
+        if (placeholder) placeholder.classList.add('hidden');
+      }
+    });
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const maxDim = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDim) {
+              height *= maxDim / width;
+              width = maxDim;
+            }
+          } else {
+            if (height > maxDim) {
+              width *= maxDim / height;
+              height = maxDim;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          if (urlInput) urlInput.value = compressedDataUrl;
+          if (previewImg) {
+            previewImg.src = compressedDataUrl;
+            previewImg.classList.remove('hidden');
+          }
+          if (placeholder) placeholder.classList.add('hidden');
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+}
 
 // ================= 5. TESTIMONIALS MANAGEMENT =================
 async function loadTestimonials() {
