@@ -482,22 +482,6 @@ function exportLeadsCSV() {
   document.body.removeChild(link);
 }
 
-// ================= 4. AGENTS MANAGEMENT =================
-async function loadAgents() {
-  const container = document.getElementById('agents-grid');
-  try {
-    const res = await fetch(`${API_BASE}/admin/agents`, {
-      headers: getAuthHeaders()
-    });
-    const data = await res.json();
-    currentAgents = data.agents || [];
-
-    const agentsBadge = document.getElementById('badge-agents-count');
-    const agentsBadgeMobile = document.getElementById('badge-agents-count-mobile');
-    if (agentsBadge) agentsBadge.textContent = currentAgents.length;
-    if (agentsBadgeMobile) agentsBadgeMobile.textContent = currentAgents.length;
-
-    if (currentAgents.length === 0) {
 // ================= 4. LEADERSHIP TEAM / HERO CARDS MANAGEMENT =================
 async function loadAgents() {
   const container = document.getElementById('agents-grid');
