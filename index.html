@@ -380,19 +380,43 @@
         ConsultPlus membantu anda menyusun nisbah khidmat hutang (DSR), membersihkan skor kredit, serta mendapatkan pakej pembiayaan paling menguntungkan.
       </p>
 
-      <div class="relative mx-auto">
-        <div class="relative z-10 rounded-2xl sm:rounded-4xl overflow-hidden shadow-xl bg-brand-navy group border-2 sm:border-4 border-white/60">
-          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80" alt="Rundingan ConsultPlus" class="w-full h-56 sm:h-80 md:h-[450px] object-cover opacity-90 brightness-90" />
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDeep/90 via-transparent to-black/30"></div>
+      <div class="relative mx-auto max-w-4xl">
+        <div class="relative z-10 rounded-2xl sm:rounded-4xl overflow-hidden shadow-2xl bg-brand-navy group border-2 sm:border-4 border-white/60 aspect-[16/9] max-h-[500px]">
+          <!-- Video Element -->
+          <video 
+            id="explainer-video" 
+            src="/assets/videos/consultplus-explainer.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="w-full h-full object-cover">
+          </video>
           
-          <div class="absolute inset-0 flex items-center justify-center">
-            <a href="tentang-kami.html" class="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-brand-yellow text-brand-navyDeep flex items-center justify-center shadow-glow-yellow transition-all hover:scale-110 active:scale-95">
-              <i data-lucide="play" class="w-6 h-6 sm:w-8 sm:h-8 fill-brand-navyDeep translate-x-0.5"></i>
-            </a>
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDeep/80 via-transparent to-black/20 pointer-events-none"></div>
+          
+          <!-- Central Play/Pause Toggle -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <button 
+              id="btn-toggle-video" 
+              onclick="toggleVideoPlay()" 
+              class="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-brand-yellow text-brand-navyDeep flex items-center justify-center shadow-glow-yellow transition-all hover:scale-110 active:scale-95 z-20 pointer-events-auto opacity-90 group-hover:opacity-100">
+              <i id="video-play-icon" data-lucide="pause" class="w-6 h-6 sm:w-8 sm:h-8 fill-brand-navyDeep"></i>
+            </button>
           </div>
 
-          <div class="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 text-left text-white pr-3">
-            <span class="inline-block px-2.5 py-0.5 bg-brand-yellow text-brand-navyDeep rounded-full text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-1">Proses Pantas</span>
+          <!-- Sound Mute/Unmute in Top Right -->
+          <button 
+            id="btn-toggle-sound" 
+            onclick="toggleVideoSound()" 
+            class="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 px-3 py-1.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur text-white text-[10px] sm:text-xs font-bold flex items-center gap-1.5 transition border border-white/20">
+            <i id="video-sound-icon" data-lucide="volume-x" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+            <span id="video-sound-text">Bunyi (Bisu)</span>
+          </button>
+
+          <!-- Bottom Banner -->
+          <div class="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 text-left text-white pr-3 z-20 pointer-events-none">
+            <span class="inline-block px-2.5 py-0.5 bg-brand-yellow text-brand-navyDeep rounded-full text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-1 shadow-sm">Animasi Proses Pantas</span>
             <p class="text-xs sm:text-sm font-semibold text-white/95 leading-tight">Lihat bagaimana 2,500+ pemohon berjaya menstruktur pinjaman &rarr;</p>
           </div>
         </div>
@@ -631,6 +655,43 @@
         }
       })
       .catch(() => {});
+
+    // Video Player Interactive Controls
+    window.toggleVideoPlay = function() {
+      const vid = document.getElementById('explainer-video');
+      const icon = document.getElementById('video-play-icon');
+      if (!vid) return;
+      if (vid.paused) {
+        vid.play();
+        if (icon) {
+          icon.setAttribute('data-lucide', 'pause');
+          icon.classList.remove('translate-x-0.5');
+        }
+      } else {
+        vid.pause();
+        if (icon) {
+          icon.setAttribute('data-lucide', 'play');
+          icon.classList.add('translate-x-0.5');
+        }
+      }
+      lucide.createIcons();
+    };
+
+    window.toggleVideoSound = function() {
+      const vid = document.getElementById('explainer-video');
+      const icon = document.getElementById('video-sound-icon');
+      const text = document.getElementById('video-sound-text');
+      if (!vid) return;
+      vid.muted = !vid.muted;
+      if (vid.muted) {
+        if (icon) icon.setAttribute('data-lucide', 'volume-x');
+        if (text) text.textContent = 'Bunyi (Bisu)';
+      } else {
+        if (icon) icon.setAttribute('data-lucide', 'volume-2');
+        if (text) text.textContent = 'Bunyi (Aktif)';
+      }
+      lucide.createIcons();
+    };
   </script>
 </body>
 </html>
