@@ -618,7 +618,7 @@ document.getElementById('form-agent')?.addEventListener('submit', async (e) => {
   const badge_label = document.getElementById('agent-badge-label').value.trim();
   const role = document.getElementById('agent-role').value.trim();
   const display_order = parseInt(document.getElementById('agent-display-order').value) || 1;
-  const phone = document.getElementById('agent-phone').value.trim() || '60123456789';
+  const phone = document.getElementById('agent-phone').value.trim() || '601171191170';
   const card_color = document.getElementById('agent-card-color').value;
   const image_url = document.getElementById('agent-image-url').value.trim();
 

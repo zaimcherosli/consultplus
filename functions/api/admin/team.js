@@ -50,7 +50,7 @@ export async function onRequestPost({ request, env }) {
       title: body.badge_label || body.title || '',
       role: (body.role || '').trim(),
       display_order: parseInt(body.display_order) || team.length + 1,
-      phone: body.phone || '60123456789',
+      phone: body.phone || '601171191170',
       card_color: body.card_color || 'bg-brand-yellow',
       image_url: body.image_url || 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
       status: 'AKTIF'

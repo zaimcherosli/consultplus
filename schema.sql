@@ -76,8 +76,8 @@ INSERT OR IGNORE INTO admins (id, username, password_hash, full_name, role) VALU
 
 -- Site Settings
 INSERT OR REPLACE INTO site_settings (key, value, description) VALUES
-('whatsapp_number', '60123456789', 'Nombor WhatsApp Utama ConsultPlus'),
-('phone_display', '+6012-345 6789', 'Paparan Nombor Telefon Hotline'),
+('whatsapp_number', '601171191170', 'Nombor WhatsApp Utama ConsultPlus'),
+('phone_display', '+6011-7119 1170', 'Paparan Nombor Telefon Hotline'),
 ('email', 'support@consultplus.my', 'Emel Rasmi ConsultPlus'),
 ('office_hours', 'Isnin - Jumaat: 9:00 AM - 6:00 PM', 'Waktu Operasi Pejabat'),
 ('min_interest_rate', '2.95%', 'Kadar Keuntungan Minimum Paparan'),
@@ -87,12 +87,12 @@ INSERT OR REPLACE INTO site_settings (key, value, description) VALUES
 
 -- Seed Team Members
 INSERT OR REPLACE INTO team_members (id, name, title, role, badge_label, phone, email, image_url, card_color, badge_color, display_order, status) VALUES
-(1, 'Tn. Zaim Rosli', 'CEO & Pengasas', 'Ketua Eksekutif', 'CEO & Pengasas', '60123456789', 'zaim@consultplus.my', 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80', 'bg-brand-yellow', 'bg-brand-navyDeep text-brand-yellow', 1, 'AKTIF'),
-(2, 'Pn. Sarah Iskandar', 'Pengarah Urusan', 'Managing Director', 'Pengarah Urusan', '60123456789', 'sarah@consultplus.my', 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80', 'bg-brand-navyDeep', 'bg-brand-yellow text-brand-navyDeep', 2, 'AKTIF'),
-(3, 'En. Razif Rahman', 'Hubungan Bank', 'Banking Relations Lead', 'Hubungan Bank', '60123456789', 'razif@consultplus.my', 'https://images.unsplash.com/photo-1558222218-b7b54eede3f3?auto=format&fit=crop&w=600&q=80', 'bg-brand-navy', 'bg-brand-yellow text-brand-navyDeep', 3, 'AKTIF'),
-(4, 'Pn. Faridah Hanum', 'Pengurus Risiko', 'Credit Risk Manager', 'Pengurus Risiko', '60123456789', 'faridah@consultplus.my', 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80', 'bg-brand-navy', 'bg-brand-yellow text-brand-navyDeep', 4, 'AKTIF'),
-(5, 'En. Amirul Haziq', 'Ketua SME', 'SME Financing Lead', 'Ketua SME', '60123456789', 'amirul@consultplus.my', 'https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&w=600&q=80', 'bg-brand-blueAccent', 'bg-brand-navy text-white', 5, 'AKTIF'),
-(6, 'Cik Aina Melissa', 'Pakar Refinance', 'Mortgage Lead', 'Pakar Refinance', '60123456789', 'aina@consultplus.my', 'https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=600&q=80', 'bg-brand-yellow', 'bg-brand-navyDeep text-white', 6, 'AKTIF');
+(1, 'Tn. Zaim Rosli', 'CEO & Pengasas', 'Ketua Eksekutif', 'CEO & Pengasas', '601171191170', 'zaim@consultplus.my', 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80', 'bg-brand-yellow', 'bg-brand-navyDeep text-brand-yellow', 1, 'AKTIF'),
+(2, 'Pn. Sarah Iskandar', 'Pengarah Urusan', 'Managing Director', 'Pengarah Urusan', '601171191170', 'sarah@consultplus.my', 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80', 'bg-brand-navyDeep', 'bg-brand-yellow text-brand-navyDeep', 2, 'AKTIF'),
+(3, 'En. Razif Rahman', 'Hubungan Bank', 'Banking Relations Lead', 'Hubungan Bank', '601171191170', 'razif@consultplus.my', 'https://images.unsplash.com/photo-1558222218-b7b54eede3f3?auto=format&fit=crop&w=600&q=80', 'bg-brand-navy', 'bg-brand-yellow text-brand-navyDeep', 3, 'AKTIF'),
+(4, 'Pn. Faridah Hanum', 'Pengurus Risiko', 'Credit Risk Manager', 'Pengurus Risiko', '601171191170', 'faridah@consultplus.my', 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80', 'bg-brand-navy', 'bg-brand-yellow text-brand-navyDeep', 4, 'AKTIF'),
+(5, 'En. Amirul Haziq', 'Ketua SME', 'SME Financing Lead', 'Ketua SME', '601171191170', 'amirul@consultplus.my', 'https://images.unsplash.com/photo-1600486913747-55e5470d6f40?auto=format&fit=crop&w=600&q=80', 'bg-brand-blueAccent', 'bg-brand-navy text-white', 5, 'AKTIF'),
+(6, 'Cik Aina Melissa', 'Pakar Refinance', 'Mortgage Lead', 'Pakar Refinance', '601171191170', 'aina@consultplus.my', 'https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=600&q=80', 'bg-brand-yellow', 'bg-brand-navyDeep text-white', 6, 'AKTIF');
 
 -- Seed Testimonials
 INSERT OR REPLACE INTO testimonials (id, client_name, profession, original_issue, loan_approved, monthly_savings, story, is_featured, display_order) VALUES

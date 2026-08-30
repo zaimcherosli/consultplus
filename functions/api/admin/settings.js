@@ -1,5 +1,16 @@
 ﻿import { jsonResponse, verifyAdminToken } from "../_utils.js";
 
+const DEFAULT_SETTINGS = {
+  whatsapp_number: "601171191170",
+  phone_display: "+6011-7119 1170",
+  email: "support@consultplus.my",
+  office_hours: "Isnin - Jumaat: 9:00 AM - 6:00 PM",
+  min_interest_rate: "2.95%",
+  max_loan_amount: "RM300,000",
+  announcement_text: "100% Panel Bank Berlesen | Tiada Caj Wang Pendahuluan | Kelulusan 24-48 Jam",
+  announcement_active: "1"
+};
+
 export async function onRequestOptions() {
   return jsonResponse({ ok: true });
 }
@@ -9,20 +20,16 @@ export async function onRequestGet({ request, env }) {
     return jsonResponse({ success: false, error: "Akses tidak dibenarkan." }, 401);
   }
 
-  if (!env.DB) {
-    return jsonResponse({ success: true, settings: {} });
+  if (env.CONSULTPLUS_KV) {
+    try {
+      const kvData = await env.CONSULTPLUS_KV.get("site_settings", "json");
+      if (kvData && typeof kvData === 'object') {
+        return jsonResponse({ success: true, settings: { ...DEFAULT_SETTINGS, ...kvData } });
+      }
+    } catch (e) {}
   }
 
-  try {
-    const { results } = await env.DB.prepare("SELECT key, value, description FROM site_settings").all();
-    const settingsMap = {};
-    for (const r of (results || [])) {
-      settingsMap[r.key] = r.value;
-    }
-    return jsonResponse({ success: true, settings: settingsMap, raw: results });
-  } catch (err) {
-    return jsonResponse({ success: false, error: err.message }, 500);
-  }
+  return jsonResponse({ success: true, settings: DEFAULT_SETTINGS });
 }
 
 export async function onRequestPut({ request, env }) {
@@ -30,32 +37,22 @@ export async function onRequestPut({ request, env }) {
     return jsonResponse({ success: false, error: "Akses tidak dibenarkan." }, 401);
   }
 
-  if (!env.DB) {
-    return jsonResponse({ success: false, error: "Pangkalan data D1 tiada." }, 500);
-  }
-
   try {
     const body = await request.json();
-    const { settings } = body; // object of { key: value }
+    let currentSettings = { ...DEFAULT_SETTINGS };
 
-    if (!settings || typeof settings !== 'object') {
-      return jsonResponse({ success: false, error: "Data tetapan tidak sah." }, 400);
+    if (env.CONSULTPLUS_KV) {
+      const kvData = await env.CONSULTPLUS_KV.get("site_settings", "json");
+      if (kvData && typeof kvData === 'object') currentSettings = { ...currentSettings, ...kvData };
     }
 
-    const stmts = [];
-    for (const [key, value] of Object.entries(settings)) {
-      stmts.push(
-        env.DB.prepare(
-          "INSERT INTO site_settings (key, value, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP) ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP"
-        ).bind(key, String(value))
-      );
+    const updated = { ...currentSettings, ...body };
+
+    if (env.CONSULTPLUS_KV) {
+      await env.CONSULTPLUS_KV.put("site_settings", JSON.stringify(updated));
     }
 
-    if (stmts.length > 0) {
-      await env.DB.batch(stmts);
-    }
-
-    return jsonResponse({ success: true, message: "Tetapan web berjaya dikemaskini." });
+    return jsonResponse({ success: true, message: "Semua tetapan web & WhatsApp berjaya disimpan!", settings: updated });
   } catch (err) {
     return jsonResponse({ success: false, error: err.message }, 500);
   }
